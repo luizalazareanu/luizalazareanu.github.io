@@ -1,0 +1,208 @@
+/*Layout - 12 column grid system that includes the header, navbar, content, and footer*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 80px 60px 1fr 50px;
+  /*font-family: Proxima Nova, sans-serif;*/
+  background-color: #efefef;
+}
+
+.grid-container > * {
+  grid-column: 1/span 12;
+}
+
+.header, .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+}
+
+.header, .footer {
+  background-color: #2c2e31;
+}
+
+.nav {
+  grid-row: 2/3;
+  background-color: #3e6767;
+}
+
+.footer {
+  /*width:100%;*/
+  /*height: 60px;*/
+  color: white;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  grid-row: 4/5;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+/*.......................................................Links layouting*/
+.header .left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.search-menu {
+  flex: 2;
+}
+
+.header .right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-links li {
+  display: inline;
+  padding: 0 7px;
+}
+
+#logo-img {
+  width: 100px;
+  height: 80px;
+}
+
+.user-links > li, .nav-items li {
+  display: inline;
+  padding: 0 7px;
+  position: relative;
+}
+
+.wishlist-items, .account-items, .category-items {
+  display: none;
+  list-style-type: none;
+  position: absolute;
+  left: 10px;
+}
+
+.user-links li:nth-child(1):hover .wishlist-items, .user-links li:nth-child(2):hover .account-items {
+  color: white;
+  display: block;
+}
+
+/*..........................................................Links and buttons styling*/
+.header a, .nav a {
+  color: white;
+  opacity: 0.75;
+}
+
+.header a:hover, .nav a:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
+
+.grid-container a:link,
+.grid-container a:visited,
+.grid-container a:active {
+  text-decoration: none;
+}
+
+.search-menu {
+  width: 40%;
+}
+
+#search-bar {
+  width: 60%;
+  height: 30px;
+  border-radius: 6px;
+}
+
+/*#search-btn {*/
+/*    width: 100px;*/
+/*    height: 30px;*/
+/*    border: 1px solid #f6e770;*/
+/*    border-radius: 15px;*/
+/*    background-color: #F3E367;*/
+/*    color: #2c2e31;*/
+/*    text-transform: uppercase;*/
+/*    cursor: pointer;*/
+/*}*/
+#search-btn {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #F3E367;
+  border-radius: 15px;
+  background-color: #f6e770;
+  color: #2c2e31;
+  cursor: pointer;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+#search-btn:hover, #adv-search-btn:hover {
+  opacity: 1;
+}
+
+#adv-search-btn {
+  height: 30px;
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  background-color: #2c2e31;
+  color: #2c2e31;
+  cursor: pointer;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  padding: 0 10px;
+  opacity: 0.75;
+}
+
+.cart {
+  margin: 10px 25px;
+}
+
+.cart-icon {
+  width: 40px;
+  height: 40px;
+}
+
+#bagTotal {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  right: 15px;
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: #ff0072;
+}
+
+/*....................................................................Scrollbar*/
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  background: #3e6767;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/*# sourceMappingURL=reuseheader.css.map */

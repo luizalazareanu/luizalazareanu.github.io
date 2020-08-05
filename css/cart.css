@@ -1,0 +1,79 @@
+/*....................................................Content layoutig*/
+.content {
+  grid-row: 3/4;
+  display: flex;
+  width: 100%;
+}
+
+#cartItems {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 700px;
+  overflow: auto;
+}
+
+#cartItems div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.content img {
+  width: 130px;
+  height: 200px;
+}
+
+.remove-item {
+  background: url("./../images/x-button.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: auto 100%;
+  cursor: pointer;
+}
+
+.price {
+  color: #ff0072;
+}
+
+.footer {
+  width: 100%;
+  height: 50px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  grid-row: 4/5;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+/*....................................................................Scrollbar*/
+/* width */
+#cartItems::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+#cartItems::-webkit-scrollbar-track {
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Handle */
+#cartItems::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  background: #3e6767;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+#cartItems::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/*# sourceMappingURL=cart.css.map */

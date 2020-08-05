@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="css/wishlist.css"/>
+    <link rel="stylesheet" href="css/reuseheader.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="grid-container">
+    <div id="header">
+        <script>
+            $(function () {
+                $('#header').load('reuseheader.html');
+            });
+        </script>
+    </div>
+
+    <div class="content">
+
+<!--        <button id="json-btn" type="button" onclick="createContentFromJson()">Load data from Json</button>-->
+        <div id="showItems">
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© 2020 The Book Shop Ltd.UK. Registered company number: 5823921</p>
+    </div>
+</div>
+<!--<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
+<script src="./js/wishlist.js"></script>
+<!--<script type="text/javascript" src="./json/products.json"></script>-->
+</body>
+</html>

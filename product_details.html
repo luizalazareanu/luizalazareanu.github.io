@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="css/product_details.css"/>
+    <link rel="stylesheet" href="css/reuseheader.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="grid-container">
+
+    <div id="header">
+        <script>
+            $(function () {
+                $('#header').load('reuseheader.html');
+            });
+        </script>
+    </div>
+
+    <div class="content">
+
+        <div class="product-picture-container">
+            <div class="cover-container">
+                <div class="flip-book front">
+                    <img id="front-cover" class="book-cover" src="./images/book_covers/normal_people.jpg" alt="cover"/>
+                </div>
+                <div class="flip-book back">
+                    <img id ="back-cover" class="book-cover" src="./images/book_covers/normal_people_back.jpg" alt="cover"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-description-container">
+            <h1 id="item-title">Normal People</h1>
+            <br/>
+            <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <p> 3.86 (250,515 ratings by Goodreads)</p>
+            </div>
+            <p>Paperback | English</p>
+            <p id="item-author">By (author) <b>Sally Rooney</b></p>
+            <br/>
+            <div class="share">
+                <p>Share</p>
+                <a href=mailto:?subject=Sharing a
+                   book&amp;body=I-saw-this-book-at-Book-Shop-and-thought-you-might-like-it" target="_blank">
+                    <img class="social-media-icon" src="images/social_media/mail.png" alt="sm"/>
+                </a>
+                <a href="https://facebook.com" target="_blank">
+                    <img class="social-media-icon" src="images/social_media/facebook.png" alt="sm"/>
+                </a>
+                <a href="https://twitter.com" target="_blank">
+                    <img class="social-media-icon" src="images/social_media/twitter.png" alt="sm"/>
+                </a>
+                <a href="https://pinterest.com" target="_blank">
+                    <img class="social-media-icon" src="images/social_media/pinterest.png" alt="sm"/>
+                </a>
+            </div>
+            <br/>
+            <p>Connell and Marianne grow up in the same small town in the west of Ireland, but the similarities end
+                there. In school, Connell is popular and well-liked, while Marianne is a loner. But when the two
+                strike
+                up a conversation - awkward but electrifying - something life-changing begins.
+
+                Normal People is a story of mutual fascination, friendship and love. It takes us from that first
+                conversation to the years beyond, in the company of two people who try to stay apart but find they
+                can't.
+
+                'The literary phenomenon of the decade.' - Guardian
+
+                SHORTLISTED FOR THE IRISH NOVEL OF THE YEAR AWARD 2019
+                SHORTLISTED FOR THE RSL ENCORE PRIZE 2019
+                LONGLISTED FOR THE RATHBONES FOLIO PRIZE 2019 </p>
+            <div id="new-paragraph" class="hidden-paragraph">
+                <p>THE BBC ADAPTATION OF NORMAL PEOPLE IS NOW AVAILABLE ON BBC IPLAYER AND BBC 1<br/>
+                    OVER ONE MILLION COPIES SOLD<br/>
+                    THE NUMBER ONE SUNDAY TIMES AND TOP FIVE NEW YORK TIMES BESTSELLER<br/>
+                    WINNER OF THE COSTA NOVEL AWARD 2018 <br/>
+                    WINNER OF THE AN POST IRISH BOOK AWARDS NOVEL OF THE YEAR <br/>
+                    WINNER OF NOVEL OF THE YEAR AND BOOK OF THE YEAR AT THE BRITISH BOOK AWARDS <br/>
+                    WINNER OF THE SPECSAVERS NATIONAL BOOK AWARDS INTERNATIONAL AUTHOR OF THE YEAR <br/>
+                    LONGLISTED FOR THE MAN BOOKER PRIZE 2018 <br/>
+                    LONGLISTED FOR THE WOMEN'S PRIZE FOR FICTION 2019</p>
+            </div>
+            <input id="show-hide-checkbox" type="checkbox">
+            <label for="show-hide-checkbox" onclick="showhide()" id="show-hide">Show More</label>
+        </div>
+
+
+        <div class="buy-product-container">
+            <div class="buy-wrapper">
+                <h2 id="price" class="price">9,98 £</h2>
+                <div class="stock">
+                    <img id="instock-icon" src="./images/instock-icon.png" alt="stock"/>
+                    <p>In Stock</p>
+                </div>
+                <div class="shipping">
+                    <img id="truck" src="./images/truck.png" alt="stock"/>
+                    <p>FREE Shipping for Club Members</p>
+                </div>
+                <div class="discount">
+                    <p>10% Discount</p>
+                    <img id="limited-icon" src="./images/limited.png" alt="limited"/>
+                </div>
+                <h5>Total: </h5>
+                <button id="add-to-cart" type="button">Add to basket</button>
+                <button id="add-to-wishlist" type="button" >Add to wishlist</button>
+            </div>
+        </div>
+
+
+        <div class="product-details-container">
+            <h3>Product Details</h3>
+            <div class="row">
+                <div class="column a">
+                    <p><b>Format:</b> Paperback | 288 pages</p>
+                    <p><b>Dimensions:</b> 129 x 198 x 17mm | 229g</p>
+                    <p><b>Publication:</b> date 22 Apr 2020
+                    <p><b>Publisher:</b> FABER & FABER
+                    <p><b>Publication:</b> City/Country London, United Kingdom</p>
+                </div>
+                <div class="column b">
+                    <p><b>Language:</b> English</p>
+                    <p><b>Edition:</b> Statement Main</p>
+                    <p><b>ISBN10:</b> 0571334652</p>
+                    <p><b>ISBN13:</b> 9780571334650</p>
+                    <p><b>Bestsellers:</b> rank 1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="suggestions-container">
+            <div class="title">
+                <h3>People who bought this also bought</h3>
+            </div>
+            <div class="books">
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/this_must_be_the_place.jpg" alt="cover">
+                    </a>
+                    <p><strong>This Must Be the Place</strong></p>
+                    <p>Maggie O'Farrell</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/underground.jpg" alt="cover">
+                    </a>
+                    <p><strong>The Underground Railroad</strong></p>
+                    <p>Colson Whitehead</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/hike.jpg" alt="cover">
+                    </a>
+                    <p><strong>Epic Hikes of the World</strong></p>
+                    <p>Lonely Planet</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/boys.jpg" alt="cover">
+                    </a>
+                    <p><strong>The Nickel Boys: Pulitzer Prize</strong></p>
+                    <p>Colson Whitehead</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/iam.jpg" alt="cover">
+                    </a>
+                    <p><strong>I Am, I Am, I Am: Seventeen Brushes</strong></p>
+                    <p>Maggie O'Farrell</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/heavy.jpg" alt="cover">
+                    </a>
+                    <p><strong>Heavy : An American Memoir</strong></p>
+                    <p>NKiese Laymon</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+                <div class="book-details-container">
+                    <a href="./product_details.html">
+                        <img class="book-cover" src="./images/book_covers/astrophysics.jpg" alt="cover">
+                    </a>
+                    <p><strong>Astrophysics for People in a Hurry</strong></p>
+                    <p>Neil Degrasse Tyson</p>
+                    <p class="price">9,98 £</p>
+                    <button type="button">Add to basket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2020 The Book Shop Ltd.UK. Registered company number: 5823921</p>
+    </div>
+
+</div>
+
+<script src="./js/product_details.js"></script>
+<!--<script src="./js/wishlist.js"></script>-->
+</body>
+</html>

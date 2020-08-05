@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="css/cart.scss"/>
+    <link rel="stylesheet" href="css/reuseheader.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="grid-container">
+    <div id="header">
+        <script>
+            $(function () {
+                $('#header').load('reuseheader.html');
+            });
+        </script>
+    </div>
+
+    <div class="content">
+
+
+        <div id="cartItems">
+
+        </div>
+        <div id="summary">
+            <h3>Summary</h3>
+            <h5>Subtotal:</h5>
+            <span>23131</span>
+            <h5>Shipping Cost</h5>
+            <span>23131</span>
+            <h5>Total:</h5>
+            <span>23131</span>
+            <div class="payment-details">
+                <h3>Payment</h3>
+                <p>Select Card Type</p>
+                <p>Card Number</p>
+                <input id="card-number" name="card-number" type="text"/>
+                <p>Expiry Date</p>
+                <input id="expiry-date" type="date" name="expiry-date"/>
+                <p>cvv</p>
+                <input id="cvv" name="cvv" type="text"/>
+                <button id="checkout-btn" type="button">Checkout</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© 2020 The Book Shop Ltd.UK. Registered company number: 5823921</p>
+    </div>
+</div>
+
+<script src="./js/cart.js"></script>
+
+</body>
+</html>

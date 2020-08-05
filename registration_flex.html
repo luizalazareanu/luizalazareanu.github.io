@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/registration_flex.css"/>
+    <!--    <link-->
+    <!--            rel="stylesheet"-->
+    <!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+    <!--    />-->
+</head>
+
+<body>
+
+<div class="header-container">
+
+    <div class="header">
+        <div class="logo-img">
+            <a id="logo" href="./home.html">
+                <img id="logo-img" src="./images/logo.jpg" alt="book image"/>
+            </a>
+        </div>
+        <div class="left">
+            <ul class="contact-links">
+                <li>
+                    <a id="help" href="#">Help<img id="info-img" src="./images/info.png" alt="info"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Contact Us<img id="phone-img" src="./images/24-hours-phone.png" alt="phone"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="search-menu">
+            <form id="search-form">
+                <input type="text" id="search-bar" placeholder="Search By Title, Author, Keyword" name="search"/>
+                <button id="search-btn" type="submit" name="search-btn">Find Books
+                </button>
+                <button id="adv-search-btn" type="submit" name="adv-search-btn">Advanced Search</button>
+            </form>
+        </div>
+        <div class="right">
+            <ul class="user-links">
+                <li><a href="#">Order Status</a></li>
+                <li><a href="#">WishList</a>
+                    <ul id="wishlist" class="wishlist-items">
+                        <li>Favorites</li>
+                        <li>Gift List</li>
+                        <li>On My Shelf</li>
+                    </ul>
+                </li>
+                <li><a href="#">Account</a>
+                    <ul class="account-items">
+                        <li>Sign In</li>
+                        <li>Register</li>
+                        <li>Account Settings</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="menu">
+        <ul class="menu-items">
+            <li><a href="">Shop By Category</a>
+                <ul class="category-items">
+                    <li>Fiction</li>
+                    <li>Fiction</li>
+                    <li>Fiction</li>
+                    <li>Fiction</li>
+                </ul>
+            </li>
+            <li><a href="">Bestsellers</a></li>
+            <li><a href="">Sales</a></li>
+            <li><a href="">Coming Soon</a></li>
+            <li><a href="">New Releases</a></li>
+        </ul>
+
+<!--        <button id="cart" type="button" name="cart">Cart</button>-->
+        <div class="cart">
+            <img src="./images/cart.png" alt="cart"/>
+            <span id="bagTotal" class="count bagTotal">0</span>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper" id="wrapper">
+
+    <div class="yellow-container">
+        <div class="container-panel left">
+            <h2>Already have an account?</h2>
+            <button id="sign-in-btn" type="button">SIGN IN</button>
+        </div>
+        <div class="container-panel right">
+            <h2>Don't have an account?</h2>
+            <button id="register-btn">SIGN UP</button>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <div class="form-container login-container">
+            <form id="login-form" action="#">
+                <h2>Sign In</h2>
+                <input id="username" type="text" name="name" required placeholder="Username"/>
+                <input id="password" type="password" name="password" required placeholder="Password"/>
+
+                <div>
+                    <input class="remember" id="remember" type="checkbox" name="remember" value="on"/>
+                    <label class="remember" for="remember">Remember me</label>
+                </div>
+                <a href="#">Forgot password?</a>
+                <button id="login-btn" type="submit">SIGN IN</button>
+            </form>
+        </div>
+
+        <div class="form-container create-account-container">
+            <form id="create-account-form" action="#">
+                <h2>Create Account</h2>
+                <input id="account-username" type="text" name="name" required placeholder="Username"/>
+                <input id="account-email" type="email" name="email" required placeholder="E-mail">
+                <input id="account-password" type="password" name="password" required placeholder="Password"/>
+                <input id="confirmpass" type="password" name="confirmpass" required placeholder="Confirm password"/>
+                <button id="sign-up-btn" type="submit">SIGN UP</button>
+                <p>By clicking the Sign Up button, you agree to our
+                    <a href="#">Terms & Conditions</a>, and
+                    <a href="#">Privacy Policy</a>.</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('register-btn').addEventListener('click', () => document.getElementById("wrapper").classList.add('right-panel-active'));
+    document.getElementById('sign-in-btn').addEventListener('click', () => document.getElementById("wrapper").classList.remove('right-panel-active'));
+</script>
+<div class="footer">
+    <p>© 2020 The Book Shop Ltd.UK. Registered company number: 5823921</p>
+</div>
+</body>
+</html>

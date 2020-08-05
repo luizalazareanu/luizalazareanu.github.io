@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="css/home.css"/>
+    <link rel="stylesheet" href="css/reuseheader.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="grid-container">
+
+    <div id="header">
+        <script>
+            $(function(){
+                $('#header').load('reuseheader.html');
+            });
+        </script>
+    </div>
+
+
+    <div class="content">
+        <div class="fading">
+            <div class="image a">
+                <img class="image top" src="./images/carousel/bookdisplaysmall.jpg" alt="cover1"/>
+                <div class="h3-title">
+                    <h3>Not sure what to read next? Explore our catalog of public domain books with our editors. Some
+                        real
+                        gems are hidden in our library. </h3>
+                </div>
+            </div>
+            <div class="image b">
+                <img class="image bottom" src="./images/carousel/bookcoverssmall2.jpg" alt="cover2"/>
+                <div class="h3-title">
+                    <h3 id="welcome-heading">Welcome to your friendly neighborhood library. We have more than 50,000
+                        books
+                        waiting to be
+                        discovered.</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-container">
+            <div class="info">
+                <img class="about-icon" src="./images/about-icons/indep-sellers.png" alt="independent"/>
+                <h2 class="books-tile-about">Independent sellers</h2>
+                <p>Millions of books and other items are listed for sale on BookShop by trusted sellers from around the
+                    world.</p>
+            </div>
+            <div class="info">
+                <img class="about-icon" src="./images/about-icons/dice.png" alt="dice"/>
+                <h2 class="books-tile-about">Not just books</h2>
+                <p>We're known for our epic selection of new, used, and rare books, but we also sell board games &
+                    collectibles.</p>
+            </div>
+            <div class="info">
+                <img class="about-icon" src="./images/about-icons/trusted.png" alt="trusted"/>
+                <h2 class="books-tile-about">Trusted since 2001</h2>
+                <p>Our mission is to make it easy for customers to discover and buy the books, boardgames and
+                    collectibles they love.</p>
+            </div>
+        </div>
+
+        <div class="bestsellers-container">
+            <div class="book-details-container">
+                <a href="./product_details.html">
+                    <img class="book-cover" src="./images/book_covers/little_fires.jpg" alt="cover">
+                </a>
+                <p><strong>Little Fires Everywhere</strong></p>
+                <p>Celeste Ng</p>
+                <p class="price">9,98 £</p>
+                <button type="button">Add to basket</button>
+            </div>
+            <div class="book-details-container">
+                <a href="./product_details.html">
+                    <img class="book-cover" src="./images/book_covers/normal_people.jpg" alt="cover">
+                </a>
+                <p><strong>Normal People</strong></p>
+                <p>Sally Rooney</p>
+                <p class="price">9,98 £</p>
+                <button type="button">Add to basket</button>
+            </div>
+            <div class="book-details-container">
+                <a href="./product_details.html">
+                    <img class="book-cover" src="./images/book_covers/rome.jpg" alt="cover">
+                </a>
+                <p><strong>The Lovers' Guide to Rome</strong></p>
+                <p>Mark Lamprell</p>
+                <p class="price">9,98 £</p>
+                <button type="button">Add to basket</button>
+            </div>
+            <div class="book-details-container">
+                <a href="./product_details.html">
+                    <img class="book-cover" src="./images/book_covers/this_is_going_to_hurt.jpg" alt="cover">
+                </a>
+                <p><strong>This Is Going To Hurt</strong></p>
+                <p> Adam Kay</p>
+                <p class="price">9,98 £</p>
+                <button type="button">Add to basket</button>
+            </div>
+        </div>
+
+        <div class="payment-gift-delivery-container">
+            <div class="info">
+                <img class="payment-gift-delivery-icon" src="./images/delivery/payment.png" alt="payment"/>
+                <h3>Secure payment</h3>
+            </div>
+            <div class="info">
+                <img class="payment-gift-delivery-icon" src="./images/delivery/gift.png" alt="gift"/>
+                <h3>Free Packaging</h3>
+            </div>
+            <div class="info">
+                <img class="payment-gift-delivery-icon" src="./images/delivery/delivery.png" alt="delivery"/>
+                <h3>Fast Delivery</h3>
+            </div>
+        </div>
+
+        <div class="story-container">
+            <!--            <div class="story-wrapper">-->
+            <img class="desk-icon" src="./images/story/desk.jpg" alt="desk"/>
+            <img class="cards-icon" src="./images/story/cardboards.png" alt="cards"/>
+            <div class="card first">
+                <img class="card-book-cover" src="./images/story/handmaid.jpg" alt="card"/>
+                <div class="card-title-paragraph">
+                    <h3>The Handmaid's Tale</h3>
+                    <p>The Republic of Gilead offers Offred only one function: to breed. If she deviates, she will,
+                        like
+                        dissenters, be hanged at the wall or sent out to die slowly of radiation sickness. But even
+                        a
+                        repressive state cannot obliterate desire - neither Offred's nor that of the two men on
+                        which
+                        her future hangs.
+                        Brilliantly conceived and executed, this powerful evocation of twenty-first century America
+                        gives full rein to Margaret Atwood's devastating irony, wit and astute perception.</p>
+                </div>
+            </div>
+            <div class="card second">
+                <img class="card-book-cover" src="./images/story/suns.jpg" alt="card"/>
+                <div class="card-title-paragraph">
+                    <h3>A Thousand Splendid Suns</h3>
+                    <p>Mariam is only fifteen when she is sent to Kabul to marry Rasheed. Nearly two decades later,
+                        a friendship grows between Mariam and a local teenager, Laila, as strong as the ties between
+                        mother and daughter. When the Taliban take over, life becomes a desperate struggle against
+                        starvation, brutality and fear. Yet love can move a person to act in unexpected ways, and
+                        lead them to overcome the most daunting obstacles with a startling heroism.</p>
+                </div>
+            </div>
+
+            <div class="card third" id="third">
+                <img class="card-book-cover" src="./images/story/bike.jpg" alt="card"/>
+                <div class="card-title-paragraph">
+                    <h3>Epic Bike Rides of the World</h3>
+                    <p>Discover 200 of the best places to ride a bike in this beautifully illustrated hardback. From
+                        family-friendly, sightseeing urban rides to epic adventures off the beaten track. Destinations
+                        range from France and Italy, for the world's great bike races, to the wilds of Mongolia and
+                        Patagonia.
+                        In the Americas we join a family bikepacking trip in
+                        Ecuador;go mountain biking in Moab and Canada; and
+                        explore the cities of Buenos Aires and New York by bicycle.</p>
+                </div>
+            </div>
+
+            <!--            </div>-->
+
+            <button class="swipe next" id="swipe-next" type="button">Next</button>
+            <button class="swipe prev" id="swipe-prev" type="button">Previous</button>
+        </div>
+
+        <div class="email-signup-container">
+            <h2 class="email-signup-header">Be the first to save</h2>
+            <h4>Get our deals in your inbox</h4>
+            <form>
+                <input type="email" placeholder="email address" name="email"/>
+                <button type="button">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2020 The Book Shop Ltd.UK. Registered company number: 5823921</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('swipe-next').addEventListener('click', () => document.getElementById("third").classList.add('put-on-bottom'));
+    document.getElementById('swipe-prev').addEventListener('click', () => document.getElementById("third").classList.remove('put-on-bottom'));
+</script>
+</body>
+</html>

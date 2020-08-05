@@ -1,0 +1,291 @@
+/*...................................................................CONTENT layout*/
+.content {
+  grid-row: 3/4;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: 20px;
+  grid-row-gap: 10px;
+}
+
+/*...............................................................................Product Picture*/
+.product-picture-container {
+  grid-column: 3/5;
+  background-color: white;
+  /*width: 319px;*/
+  height: 400px;
+  perspective: 1000px;
+}
+
+.cover-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-book {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+/* Horizontal flip when moving the mouse over the cover-container */
+.product-picture-container:hover .cover-container {
+  transform: rotateY(180deg);
+}
+
+.flip-book.back {
+  transform: rotateY(180deg);
+}
+
+.book-cover {
+  width: 260px;
+  height: 400px;
+}
+
+/*...............................................................................Buy Product Container*/
+.buy-product-container {
+  grid-column: 9/11;
+  background-color: #FFFFFF;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+  margin-left: 15px;
+  position: relative;
+}
+
+.buy-wrapper {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  color: #ff0072;
+  border-bottom: 1px solid #ebebeb;
+}
+
+#limited-icon {
+  width: 150px;
+  height: 40px;
+  position: absolute;
+  left: 62%;
+}
+
+#instock-icon {
+  width: 25px;
+  height: 20px;
+}
+
+#truck {
+  width: 50px;
+  height: 30px;
+}
+
+.buy-product-container .stock, .buy-product-container .shipping, .discount {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.buy-product-container h5 {
+  padding: 10px 0;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.buy-product-container button {
+  width: 130px;
+  height: 30px;
+  border: 1px solid #F3E367;
+  border-radius: 15px;
+  background-color: #f6e770;
+  color: #2c2e31;
+  cursor: pointer;
+  margin: 10px;
+  align-self: center;
+}
+
+.buy-product-container .animate-add-to-cart {
+  animation-name: fly-to-cart;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.9s;
+}
+
+@keyframes fly-to-cart {
+  0% {
+    width: 100px;
+    font-size: 5px;
+  }
+  45% {
+    width: 30px;
+    font-size: 0;
+  }
+  100% {
+    width: 30px;
+    font-size: 0;
+    transform: translate(260px, -300px);
+  }
+}
+#add-to-wishlist {
+  background-color: #FFFFFF;
+  border: 1px solid black;
+}
+
+.buy-product-container .animate-add-to-wishlist {
+  animation-name: wishlisted;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.9s;
+}
+
+@keyframes wishlisted {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*...............................................................................Item Description*/
+.item-description-container {
+  grid-column: 5/9;
+  background-color: white;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.social-media-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 7px;
+}
+
+.fa.fa-star.checked {
+  color: #fed221;
+}
+
+.rating, .share {
+  display: flex;
+  align-items: center;
+}
+
+.rating p {
+  padding-left: 10px;
+}
+
+.hidden-paragraph {
+  display: none;
+}
+
+#show-hide {
+  position: relative;
+  color: rebeccapurple;
+  cursor: pointer;
+}
+
+#show-hide-checkbox {
+  display: none;
+}
+
+#show-hide-checkbox:checked + #show-hide:after {
+  content: "Show Less";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+}
+
+/*...............................................................................Product Details*/
+.product-details-container {
+  grid-column: 3/11;
+  grid-row: 2;
+  background-color: #FFFFFF;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.product-details-container .row {
+  display: flex;
+  margin: 15px;
+}
+
+.product-details-container h3 {
+  margin-top: 15px;
+  margin-left: 15px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.product-details-container .column.b {
+  margin-left: 15px;
+}
+
+/*...............................................................................More Products/Suggestions*/
+.suggestions-container {
+  grid-column: 3/11;
+  grid-row: 3;
+  background-color: #FFFFFF;
+  margin-bottom: 15px;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.books {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.book-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 140px;
+}
+
+.book-details-container .book-cover {
+  width: 130px;
+  height: 200px;
+}
+
+.suggestions-container .title {
+  margin: 10px 15px;
+}
+
+.book-details-container button {
+  height: 30px;
+  border: 1px solid #3e6767;
+  border-radius: 15px;
+  background-color: #28847F;
+  color: #2c2e31;
+  cursor: pointer;
+  margin: 10px;
+}
+
+/*............................................................................Responsiveness*/
+@media screen and (max-width: 1500px) {
+  .product-picture-container {
+    grid-column: 3/7;
+  }
+
+  .buy-product-container {
+    grid-column: 7/11;
+  }
+
+  .item-description-container {
+    grid-column: 3/11;
+    grid-row: 2;
+  }
+
+  .product-details-container {
+    grid-row: 3;
+  }
+
+  .suggestions-container {
+    grid-row: 4;
+  }
+}
+
+/*# sourceMappingURL=product_details.css.map */
