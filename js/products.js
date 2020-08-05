@@ -76,7 +76,7 @@ function getBookCover(event){
         localStorage.setItem("bookPrice", price);
         //console.log(localStorage);
         ///go to product details page
-        window.location.href = 'http://localhost:8080/test/web/product_details.html';
+        window.location.href = '/product_details.html';
     }
 }
 
