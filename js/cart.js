@@ -1,10 +1,13 @@
-var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
+//var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
 var cartItems = document.getElementById("cartItems");
 
-function loadBooksInCart() {
+window.onload = fetchBooks();
+
+function renderBooksInCart(cartBooks) {
     // var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
-    console.log(wishlistedBooks);
-    wishlistedBooks.forEach(book => {
+    console.log(cartBooks);
+    cartItems.innerHTML = "";
+    cartBooks.forEach(book => {
 
         var div = document.createElement('div');
         var frontCover = document.createElement("img");
@@ -16,7 +19,8 @@ function loadBooksInCart() {
         span.className = 'remove-item';
         detailsPrice.className = 'price';
 
-        frontCover.setAttribute("src", book.bookImage);
+        div.setAttribute("id",book.id)
+        frontCover.setAttribute("src", book.img);
         detailsTitle.innerHTML = book.title;
         detailsAuthor.innerHTML = book.author.slice(15, -4);
         detailsPrice.innerHTML = book.price;
@@ -31,4 +35,33 @@ function loadBooksInCart() {
     })
 }
 
-window.onload = loadBooksInCart();
+cartItems.addEventListener('click', removeFromCart);
+
+
+/////fetch cart books from server
+function fetchBooks() {
+    return fetch("http://localhost:3000/booksForCart", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+    }).then(response => response.json());
+}
+
+fetchBooks().then(renderBooksInCart);
+
+////remove books on server then render them
+function removeFromCart(event) {
+    var bookId = event.target.parentNode.getAttribute("id");
+    console.log(bookId);
+    if (event.target.className.includes("remove-item")) {
+        fetch(`http://localhost:3000/booksFromCart/${bookId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            }
+        })
+            .then(fetchBooks)
+            .then(renderBooksInCart)
+    }
+}

@@ -45,37 +45,31 @@ window.onload = setFrontCover();
 ////WISHLIST functionality
 var wishlistButton = document.getElementById("add-to-wishlist");
 
-/////add book details into array of objects and parse it into local storage
-// function addBookForWishlist() {
-//     var wishlistItems = [];
-//     ///get book details from targeted book
-//     var book = {
-//         bookImage: frontCover.getAttribute("src"),
-//         title: detailsTitle.innerHTML,
-//         author: detailsAuthor.innerHTML,
-//         price: detailsPrice.innerHTML,
-//     };
-//     if (localStorage.getItem("booksForWishlist") === null) {
-//         wishlistItems.push(book);
-//         localStorage.setItem("booksForWishlist", JSON.stringify(wishlistItems));
-//     } else {
-//         wishlistItems = JSON.parse(localStorage.getItem("booksForWishlist"));
-//         wishlistItems.push(book);
-//         localStorage.setItem("booksForWishlist", JSON.stringify(wishlistItems));
-//     }
-//
-//     console.log(wishlistItems);
-//     // localStorage.clear();
-// }
+function addBookForWishlist(){
+    fetch ("http://localhost:3000/booksForWishlist",{
+        method: "POST",
+        headers:{
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: localStorage.getItem("bookId"),
+            img: frontCover.getAttribute("src"),
+            title: detailsTitle.innerHTML,
+            author: detailsAuthor.innerHTML,
+            price: detailsPrice.innerHTML,
+        })
+    })
+}
 
 wishlistButton.addEventListener('click', addBookForWishlist);
 
 ///ADD TO CART functionality
 var addToCartBtn = document.getElementById("add-to-cart");
-addToCartBtn.addEventListener('click', addBookForWishlist);
+addToCartBtn.addEventListener('click', addBookForCart);
 
-function addBookForWishlist(){
-    fetch ("http://localhost:3000/booksForWishlist",{
+function addBookForCart(){
+    fetch ("http://localhost:3000/booksForCart",{
         method: "POST",
         headers:{
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,

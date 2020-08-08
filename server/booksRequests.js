@@ -13,7 +13,7 @@ productsRouter.get("/books", function (request, response) {
     response.send(library)
 });
 
-
+///// logic for wishlist
 var wishlistedBooks = [];
 
 productsRouter.post("/booksForWishlist", function (request, response) {
@@ -44,5 +44,32 @@ productsRouter.get("/booksForWishlist", function (request, response) {
     response.send(wishlistedBooks)
 });
 
+
+////logic for cart
+var cartBooks =[];
+
+productsRouter.get("/booksForCart",function(request,response){
+    response.send(cartBooks);
+});
+
+productsRouter.delete("/booksFromCart/:bookId", function (request,response){
+    const bookId = request.params.bookId;
+    //cartBooks = cartBooks.filter(item =>item.id !=bookId);
+    const newArray = cartBooks.filter(item => item.id != bookId);
+    cartBooks = newArray;
+    response.send(newArray);
+});
+productsRouter.post("/booksForCart", function(request,response){
+    const body = request.body;
+    const newBook = {
+        id: body.id,
+        img: body.img,
+        title: body.title,
+        author: body.author,
+        price: body.price
+    };
+    cartBooks.push(newBook);
+    response.send(newBook);
+});
 
 module.exports = productsRouter;
