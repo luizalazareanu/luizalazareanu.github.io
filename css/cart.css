@@ -23,6 +23,24 @@
   box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
+#left-pane-summary {
+  margin: 30px;
+  width: 25%;
+  height: 690px;
+  background-color: #ffffff;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+#summary {
+  height: 50%;
+}
+
+.payment-details {
+  height: 50%;
+  background-color: #2c2e31;
+  color: #ffffff;
+}
+
 .content img {
   width: 130px;
   height: 200px;
@@ -38,6 +56,16 @@
 
 .price {
   color: #ff0072;
+}
+
+#checkout-btn {
+  width: 130px;
+  height: 30px;
+  border: 1px solid #F3E367;
+  border-radius: 15px;
+  background-color: #f6e770;
+  color: #2c2e31;
+  cursor: pointer;
 }
 
 .footer {

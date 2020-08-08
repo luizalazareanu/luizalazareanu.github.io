@@ -15,41 +15,41 @@ var loginForm = document.getElementById("login-form");
 //pass validation at least 1 numeric, 1 upper, 1 lower
 var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/g;
 
-function setVisibility(element,visibility){
+function setVisibility(element, visibility) {
     element.style.visibility = visibility;
 }
 
 username.addEventListener("blur", function () {
     if (username.value.length < 4) {
-        setVisibility(usernameInvalid,"visible");
-        setVisibility(usernameValid,"hidden");
+        setVisibility(usernameInvalid, "visible");
+        setVisibility(usernameValid, "hidden");
     } else {
-        setVisibility(usernameInvalid,"hidden");
-        setVisibility(usernameValid,"visible");
+        setVisibility(usernameInvalid, "hidden");
+        setVisibility(usernameValid, "visible");
     }
 });
 
 password.addEventListener("blur", function () {
     if (password.value.match(regex)) {
-        setVisibility(passwordValid,"visible");
-        setVisibility(passwordInvalid,"hidden");
+        setVisibility(passwordValid, "visible");
+        setVisibility(passwordInvalid, "hidden");
     } else {
-        setVisibility(passwordInvalid,"visible");
-        setVisibility(passwordValid,"hidden");
+        setVisibility(passwordInvalid, "visible");
+        setVisibility(passwordValid, "hidden");
     }
 });
 
 signInBtn.addEventListener("click", function (event) {
     if (usernameValid.style.visibility === "visible" && passwordValid.style.visibility === "visible") {
-        loginForm.setAttribute("action", "home.html");
+        //loginForm.setAttribute("action", "home.html");
     } else {
         // var warning = document.createElement("p");
         // warning.innerHTML = "Username or Password is incorrect";
         // warning.style.color = "red";
         // loginForm.appendChild(warning);
 
-        setVisibility(passwordInvalid,"visible");
-        setVisibility(usernameInvalid,"visible");
+        setVisibility(passwordInvalid, "visible");
+        setVisibility(usernameInvalid, "visible");
         event.preventDefault();
     }
 });
@@ -124,7 +124,29 @@ email.addEventListener("blur", isEmailValid);
 accountPassword.addEventListener("blur", isPasswordValid);
 confirmPass.addEventListener("keyup", doPasswordMatch);
 
-window.onload = function() {
+window.onload = function () {
     createAccountForm.reset();
     loginForm.reset();
 };
+
+
+////sign in authorization from server
+
+loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log(username.value);
+    fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+
+        })
+    })
+        .then((r) => r.json())
+        .then((response) => {
+            sessionStorage.setItem("token", response.token);
+            window.location.assign("/home.html");
+        })
+
+});

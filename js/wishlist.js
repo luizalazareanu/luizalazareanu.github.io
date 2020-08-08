@@ -1,9 +1,9 @@
-var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
+//var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
 var existingDiv = document.getElementById("showItems");
 
-function loadBooksInWishlist() {
-    // var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
-    console.log(wishlistedBooks);
+function renderBooks(wishlistedBooks) {
+    //console.log(wishlistedBooks);
+    existingDiv.innerHTML ="";
     wishlistedBooks.forEach(book => {
 
         var div = document.createElement('div');
@@ -18,7 +18,8 @@ function loadBooksInWishlist() {
         span.className = 'remove-item';
         detailsPrice.className = 'price';
 
-        frontCover.setAttribute("src", book.bookImage);
+        div.setAttribute("id",book.id)
+        frontCover.setAttribute("src", book.img);
         detailsTitle.innerHTML = book.title;
         detailsAuthor.innerHTML = book.author.slice(15, -4);
         detailsPrice.innerHTML = book.price;
@@ -33,19 +34,35 @@ function loadBooksInWishlist() {
     })
 }
 
-window.onload = loadBooksInWishlist();
-
-////// REMOVE from wishlist
-
-function removeFromWishlist(event) {
-    if (event.target.className.includes("remove-item")) {
-        var bookTitle = event.target.parentNode.childNodes[1].innerHTML;
-        const result = wishlistedBooks.filter(book => book.title !== bookTitle);
-        console.log(result);
-        localStorage.setItem("booksForWishlist",JSON.stringify(result));
-        console.log(localStorage);
-        location.reload();
-    }
-}
+window.onload = fetchBooks();
 
 existingDiv.addEventListener('click', removeFromWishlist);
+
+
+/////fetch wishlisted books from server
+function fetchBooks(){
+    return fetch("http://localhost:3000/booksForWishlist",{
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+    }).then(response =>response.json());
+}
+
+fetchBooks().then(renderBooks);
+
+////remove books on server then render them
+function removeFromWishlist(event) {
+    var bookId = event.target.parentNode.getAttribute("id");
+    console.log(bookId);
+    if (event.target.className.includes("remove-item")) {
+        fetch(`http://localhost:3000/booksFromWishlist/${bookId}`,{
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            }
+        })
+            .then(fetchBooks)
+            .then(renderBooks)
+    }
+}

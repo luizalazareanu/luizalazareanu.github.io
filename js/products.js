@@ -1,22 +1,22 @@
-function loadProductsFromJson() {
-    //const requestURL = './../web/json/products.json';
-    const requestURL = './../json/products.json';
-    const request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-
-    request.onload = function () {
-        var library = JSON.parse(request.responseText);
-        createContentFromJson(library);
-    };
-    request.send();
-}
+// function loadProductsFromJson() {
+//     //const requestURL = './../web/json/products.json';
+//     const requestURL = './../json/products.json';
+//     const request = new XMLHttpRequest();
+//     request.open('GET', requestURL);
+//
+//     request.onload = function () {
+//         var library = JSON.parse(request.responseText);
+//         createContentFromJson(library);
+//     };
+//     request.send();
+// }
 
 document.addEventListener("DOMContentLoaded", function () {
-    loadProductsFromJson();
+    fetchBooks();
 });
 
 var booksContainer = document.getElementById("books");
-function createContentFromJson(library) {
+function renderBooks(library) {
     //var booksContainer = document.getElementById("books");
     library.forEach(function (book) {
         //create elements
@@ -57,7 +57,7 @@ function createContentFromJson(library) {
 
 ////get book cover,title, author and price from products page onclick
 function getBookCover(event){
-    console.log(event.target);
+    //console.log(event.target);
     //console.log(event.target.tagName);
     //console.log(event.target.tagName.includes("IMG"));
     if(event.target.tagName.includes("IMG")) {
@@ -66,10 +66,12 @@ function getBookCover(event){
         var title = event.target.parentNode.nextSibling.innerHTML;
         var author = event.target.parentNode.parentNode.childNodes[2].innerHTML;
         var price = event.target.parentNode.parentNode.childNodes[3].innerHTML;
+        var bookId = event.target.parentNode.nextSibling.parentNode.getAttribute("id");
 
         ///put the src value into local storage
         // localStorage.clear();
         // console.log(localStorage);
+        localStorage.setItem("bookId", bookId);
         localStorage.setItem("bookCover", bookImage);
         localStorage.setItem("bookTitle", title);
         localStorage.setItem("bookAuthor", author);
@@ -81,3 +83,16 @@ function getBookCover(event){
 }
 
 booksContainer.addEventListener('click', getBookCover);
+
+
+/////fetch books from server
+function fetchBooks(){
+    return fetch("http://localhost:3000/books",{
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+    }).then(response =>response.json());
+}
+
+fetchBooks().then(renderBooks);

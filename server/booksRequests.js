@@ -1,0 +1,48 @@
+//from json
+// const abc = require("./products");
+// console.log(typeof abc);
+
+//from js
+const library = require("./books");
+//console.log(library);
+const express = require("express");
+const productsRouter = express.Router();
+
+
+productsRouter.get("/books", function (request, response) {
+    response.send(library)
+});
+
+
+var wishlistedBooks = [];
+
+productsRouter.post("/booksForWishlist", function (request, response) {
+    const body = request.body;
+
+    const newBook = {
+        id: body.id,
+        img: body.img,
+        title: body.title,
+        author: body.author,
+        price: body.price
+    };
+
+    wishlistedBooks.push(newBook);
+    response.send(newBook);
+});
+
+productsRouter.delete("/booksFromWishlist/:bookId", function (request, response) {
+    const bookId = request.params.bookId;
+
+    const newArray = wishlistedBooks.filter(item => item.id != bookId);
+    wishlistedBooks = newArray;
+
+    response.send(newArray);
+});
+
+productsRouter.get("/booksForWishlist", function (request, response) {
+    response.send(wishlistedBooks)
+});
+
+
+module.exports = productsRouter;
