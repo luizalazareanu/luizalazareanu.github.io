@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-.price {
+.price, #subtotal, #total, #shipping-cost {
   color: #ff0072;
 }
 

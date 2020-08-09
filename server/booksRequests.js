@@ -46,20 +46,20 @@ productsRouter.get("/booksForWishlist", function (request, response) {
 
 
 ////logic for cart
-var cartBooks =[];
+var cartBooks = [];
 
-productsRouter.get("/booksForCart",function(request,response){
+productsRouter.get("/booksForCart", function (request, response) {
     response.send(cartBooks);
 });
 
-productsRouter.delete("/booksFromCart/:bookId", function (request,response){
+productsRouter.delete("/booksFromCart/:bookId", function (request, response) {
     const bookId = request.params.bookId;
     //cartBooks = cartBooks.filter(item =>item.id !=bookId);
     const newArray = cartBooks.filter(item => item.id != bookId);
     cartBooks = newArray;
     response.send(newArray);
 });
-productsRouter.post("/booksForCart", function(request,response){
+productsRouter.post("/booksForCart", function (request, response) {
     const body = request.body;
     const newBook = {
         id: body.id,
@@ -68,7 +68,10 @@ productsRouter.post("/booksForCart", function(request,response){
         author: body.author,
         price: body.price
     };
-    cartBooks.push(newBook);
+    ///check if book is already added to cart. If not, push it into cartBooks array
+    if (cartBooks.every(book => book.id != newBook.id)) {
+        cartBooks.push(newBook);
+    }
     response.send(newBook);
 });
 

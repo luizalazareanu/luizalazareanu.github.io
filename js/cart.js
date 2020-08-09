@@ -5,7 +5,7 @@ window.onload = fetchBooks();
 
 function renderBooksInCart(cartBooks) {
     // var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
-    console.log(cartBooks);
+    //console.log(cartBooks);
     cartItems.innerHTML = "";
     cartBooks.forEach(book => {
 
@@ -49,11 +49,13 @@ function fetchBooks() {
 }
 
 fetchBooks().then(renderBooksInCart);
+fetchBooks().then(getSubtotal);
+fetchBooks().then(getNoOfCartItems);
 
 ////remove books on server then render them
 function removeFromCart(event) {
     var bookId = event.target.parentNode.getAttribute("id");
-    console.log(bookId);
+    //console.log(bookId);
     if (event.target.className.includes("remove-item")) {
         fetch(`http://localhost:3000/booksFromCart/${bookId}`, {
             method: "DELETE",
@@ -63,5 +65,26 @@ function removeFromCart(event) {
         })
             .then(fetchBooks)
             .then(renderBooksInCart)
+            .then(fetchBooks)
+            .then(getSubtotal)
+            .then(fetchBooks)
+            .then(getNoOfCartItems);
     }
+}
+
+/// calculate the number of items that are currently into cart
+function getNoOfCartItems(cartBooks){
+    console.log(cartBooks);
+    var bagTotal = document.getElementById("bagTotal");
+    bagTotal.innerHTML = cartBooks.length;
+}
+
+/// calculate subtotal
+function getSubtotal(cartBooks){
+    //console.log(cartBooks);
+    var subtotal = document.getElementById("subtotal");
+    subtotal.innerHTML = cartBooks.reduce((accumulator,currentObj)=>{
+        //console.log( parseFloat(currentObj.price.replace(',','.').replace(' ','')));
+        return accumulator +  parseFloat(currentObj.price.replace(',','.').replace(' ',''));
+    },0);
 }

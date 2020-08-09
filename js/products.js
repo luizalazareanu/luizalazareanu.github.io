@@ -42,6 +42,7 @@ function renderBooks(library) {
         price.setAttribute("class","price");
         addToBasket.innerHTML = "Add to basket";
         addToBasket.setAttribute("type","button");
+        addToBasket.className = "add-to-basket";
 
         //append elements
         booksContainer.appendChild(divBookDetails);
@@ -96,3 +97,24 @@ function fetchBooks(){
 }
 
 fetchBooks().then(renderBooks);
+
+/// add to cart functionality
+booksContainer.addEventListener('click', function(event){
+    if(event.target.className == "add-to-basket"){
+        console.log(event.target);
+        fetch ("http://localhost:3000/booksForCart",{
+            method: "POST",
+            headers:{
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: event.target.parentNode.getAttribute("id"),
+                img: event.target.parentNode.children[0].children[0].getAttribute("src"),
+                title: event.target.parentNode.children[1].innerHTML,
+                author: event.target.parentNode.children[2].innerHTML,
+                price: event.target.parentNode.children[3].innerHTML,
+            })
+        })
+    }
+});
