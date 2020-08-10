@@ -39,48 +39,59 @@ function setFrontCover() {
     detailsPrice.innerHTML = localStorage.getItem('bookPrice');
 }
 
-window.onload = setFrontCover();
+//window.onload = setFrontCover();
+document.addEventListener("DOMContentLoaded", function () {
+    setFrontCover();
+    fetchBooksForCart().then(getNoOfCartItems);
+});
+
 
 
 ////WISHLIST functionality
 var wishlistButton = document.getElementById("add-to-wishlist");
+wishlistButton.addEventListener('click', addBookForWishlist);
 
 function addBookForWishlist(){
-    fetch ("http://localhost:3000/booksForWishlist",{
-        method: "POST",
-        headers:{
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            id: localStorage.getItem("bookId"),
-            img: frontCover.getAttribute("src"),
-            title: detailsTitle.innerHTML,
-            author: detailsAuthor.innerHTML,
-            price: detailsPrice.innerHTML,
-        })
-    })
+    const bodyRequest = JSON.stringify({
+        id: localStorage.getItem("bookId"),
+        img: frontCover.getAttribute("src"),
+        title: detailsTitle.innerHTML,
+        author: detailsAuthor.innerHTML,
+        price: detailsPrice.innerHTML,
+    });
+    postBookInWishlist(bodyRequest);
 }
 
-wishlistButton.addEventListener('click', addBookForWishlist);
 
 ///ADD TO CART functionality
 var addToCartBtn = document.getElementById("add-to-cart");
 addToCartBtn.addEventListener('click', addBookForCart);
 
+// function addBookForCart(){
+//     fetch ("http://localhost:3000/booksForCart",{
+//         method: "POST",
+//         headers:{
+//             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             id: localStorage.getItem("bookId"),
+//             img: frontCover.getAttribute("src"),
+//             title: detailsTitle.innerHTML,
+//             author: detailsAuthor.innerHTML,
+//             price: detailsPrice.innerHTML,
+//         })
+//     })
+// }
 function addBookForCart(){
-    fetch ("http://localhost:3000/booksForCart",{
-        method: "POST",
-        headers:{
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            id: localStorage.getItem("bookId"),
-            img: frontCover.getAttribute("src"),
-            title: detailsTitle.innerHTML,
-            author: detailsAuthor.innerHTML,
-            price: detailsPrice.innerHTML,
-        })
-    })
-}
+    const bodyRequest = JSON.stringify({
+        id: localStorage.getItem("bookId"),
+        img: frontCover.getAttribute("src"),
+        title: detailsTitle.innerHTML,
+        author: detailsAuthor.innerHTML,
+        price: detailsPrice.innerHTML});
+
+    postBookInCart(bodyRequest)
+        .then(fetchBooksForCart)
+        .then(getNoOfCartItems)
+    }

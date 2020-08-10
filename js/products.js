@@ -1,21 +1,11 @@
-// function loadProductsFromJson() {
-//     //const requestURL = './../web/json/products.json';
-//     const requestURL = './../json/products.json';
-//     const request = new XMLHttpRequest();
-//     request.open('GET', requestURL);
-//
-//     request.onload = function () {
-//         var library = JSON.parse(request.responseText);
-//         createContentFromJson(library);
-//     };
-//     request.send();
-// }
 
 document.addEventListener("DOMContentLoaded", function () {
     fetchBooks();
+    fetchBooksForCart().then(getNoOfCartItems);
 });
 
 var booksContainer = document.getElementById("books");
+
 function renderBooks(library) {
     //var booksContainer = document.getElementById("books");
     library.forEach(function (book) {
@@ -39,9 +29,9 @@ function renderBooks(library) {
         title.style.fontWeight = "bold";
         author.innerText = book.author;
         price.innerText = book.price;
-        price.setAttribute("class","price");
+        price.setAttribute("class", "price");
         addToBasket.innerHTML = "Add to basket";
-        addToBasket.setAttribute("type","button");
+        addToBasket.setAttribute("type", "button");
         addToBasket.className = "add-to-basket";
 
         //append elements
@@ -57,11 +47,11 @@ function renderBooks(library) {
 
 
 ////get book cover,title, author and price from products page onclick
-function getBookCover(event){
+function getBookCover(event) {
     //console.log(event.target);
     //console.log(event.target.tagName);
     //console.log(event.target.tagName.includes("IMG"));
-    if(event.target.tagName.includes("IMG")) {
+    if (event.target.tagName.includes("IMG")) {
         ///get src value from targeted img
         var bookImage = event.target.getAttribute("src");
         var title = event.target.parentNode.nextSibling.innerHTML;
@@ -87,34 +77,53 @@ booksContainer.addEventListener('click', getBookCover);
 
 
 /////fetch books from server
-function fetchBooks(){
-    return fetch("http://localhost:3000/books",{
+function fetchBooks() {
+    return fetch("http://localhost:3000/books", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
-    }).then(response =>response.json());
+    }).then(response => response.json());
 }
 
 fetchBooks().then(renderBooks);
 
 /// add to cart functionality
-booksContainer.addEventListener('click', function(event){
-    if(event.target.className == "add-to-basket"){
-        console.log(event.target);
-        fetch ("http://localhost:3000/booksForCart",{
-            method: "POST",
-            headers:{
-                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id: event.target.parentNode.getAttribute("id"),
-                img: event.target.parentNode.children[0].children[0].getAttribute("src"),
-                title: event.target.parentNode.children[1].innerHTML,
-                author: event.target.parentNode.children[2].innerHTML,
-                price: event.target.parentNode.children[3].innerHTML,
-            })
-        })
+// booksContainer.addEventListener('click', function(event){
+//     if(event.target.className == "add-to-basket"){
+//         console.log(event.target);
+//         fetch ("http://localhost:3000/booksForCart",{
+//             method: "POST",
+//             headers:{
+//                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 id: event.target.parentNode.getAttribute("id"),
+//                 img: event.target.parentNode.children[0].children[0].getAttribute("src"),
+//                 title: event.target.parentNode.children[1].innerHTML,
+//                 author: event.target.parentNode.children[2].innerHTML,
+//                 price: event.target.parentNode.children[3].innerHTML,
+//             })
+//         })
+//             .then(fetchBooksForCart)
+//             .then(getNoOfCartItems)
+//     }
+// });
+
+booksContainer.addEventListener('click', function (event) {
+    var bodyRequest = JSON.stringify({
+        id: event.target.parentNode.getAttribute("id"),
+        img: event.target.parentNode.children[0].children[0].getAttribute("src"),
+        title: event.target.parentNode.children[1].innerHTML,
+        author: event.target.parentNode.children[2].innerHTML,
+        price: event.target.parentNode.children[3].innerHTML,
+    });
+    if (event.target.className == "add-to-basket") {
+        //console.log(event.target);
+        postBookInCart(bodyRequest)
+            .then(fetchBooksForCart)
+            .then(getNoOfCartItems)
     }
 });
+
