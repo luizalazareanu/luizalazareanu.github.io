@@ -107,6 +107,7 @@
 }
 
 .buy-product-container .animate-add-to-cart {
+  position: absolute;
   animation-name: fly-to-cart;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
@@ -125,7 +126,7 @@
   100% {
     width: 30px;
     font-size: 0;
-    transform: translate(260px, -300px);
+    transform: translate(1838px, 93.5px);
   }
 }
 #add-to-wishlist {

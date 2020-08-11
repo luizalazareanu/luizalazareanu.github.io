@@ -1,7 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     fetchBooks();
-    fetchBooksForCart().then(getNoOfCartItems);
 });
 
 var booksContainer = document.getElementById("books");

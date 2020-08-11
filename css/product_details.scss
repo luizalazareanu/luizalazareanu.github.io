@@ -111,15 +111,16 @@
 //}
 
 .buy-product-container button {
-  @include button-style(130px,$color-light-yellow,$color-dark-yellow);
-    margin: 10px;
-    align-self: center;
-    //transition: width, font-size 0.6s ease-in-out;
+  @include button-style(130px, $color-light-yellow, $color-dark-yellow);
+  margin: 10px;
+  align-self: center;
+  //transition: width, font-size 0.6s ease-in-out;
 }
 
-.buy-product-container .animate-add-to-cart{
+.buy-product-container .animate-add-to-cart {
   //width: 30px;
   //font-size:0;
+  position:absolute;
   animation-name: fly-to-cart;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
@@ -130,11 +131,11 @@
 @keyframes fly-to-cart {
   0% {
     width: 100px;
-    font-size:5px;
+    font-size: 5px;
   }
   45% {
     width: 30px;
-    font-size:0;
+    font-size: 0;
     //transform: translate(0px);
   }
   55% {
@@ -142,10 +143,12 @@
     //font-size:0;
   }
   100% {
+    //position:absolute;
     width: 30px;
-    font-size:0;
-    transform: translate(260px,-300px);
-    //transform: translate(900%,-900%);
+    font-size: 0;
+    //transform: translate(260px,-300px);
+    //transform: translate(1838px, 93.5px);
+    transform: translate(1838px, 93.5px);
   }
 }
 
@@ -158,7 +161,7 @@
 //    content:"";
 //}
 
-.buy-product-container .animate-add-to-wishlist{
+.buy-product-container .animate-add-to-wishlist {
   animation-name: wishlisted;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
@@ -182,7 +185,7 @@
     //font-size:0;
   }
   100% {
-    opacity:1;
+    opacity: 1;
     //&:after{ content:"\f00c Added";}
   }
 }
@@ -214,17 +217,20 @@
   padding-left: 10px;
 }
 
-.hidden-paragraph{
+.hidden-paragraph {
   display: none;
 }
+
 #show-hide {
   position: relative;
   color: rebeccapurple;
-  cursor:pointer;
+  cursor: pointer;
 }
+
 #show-hide-checkbox {
   display: none;
 }
+
 #show-hide-checkbox:checked + #show-hide:after {
   content: "Show Less";
   position: absolute;
@@ -234,6 +240,7 @@
   bottom: 0;
   background: white;
 }
+
 /*...............................................................................Product Details*/
 .product-details-container {
   grid-column: 3/11;
@@ -309,8 +316,8 @@
 //}
 
 .book-details-container button {
-    @include button-style(null,$color-light-green,$color-dark-green);
-    margin: 10px;
+  @include button-style(null, $color-light-green, $color-dark-green);
+  margin: 10px;
 }
 
 /*............................................................................Responsiveness*/

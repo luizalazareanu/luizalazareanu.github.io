@@ -13,7 +13,7 @@
 
     <div id="header">
         <script>
-            $(function(){
+            $(function () {
                 $('#header').load('reuseheader.html');
             });
         </script>
@@ -62,42 +62,42 @@
             </div>
         </div>
 
-        <div class="bestsellers-container">
-            <div class="book-details-container">
+        <div id="bestsellers-container" class="bestsellers-container">
+            <div id="109" class="book-details-container">
                 <a href="./product_details.html">
                     <img class="book-cover" src="./images/book_covers/little_fires.jpg" alt="cover">
                 </a>
                 <p><strong>Little Fires Everywhere</strong></p>
                 <p>Celeste Ng</p>
                 <p class="price">9,98 £</p>
-                <button type="button">Add to basket</button>
+                <button class="add-to-cart" type="button">Add to basket</button>
             </div>
-            <div class="book-details-container">
+            <div id="107" class="book-details-container">
                 <a href="./product_details.html">
                     <img class="book-cover" src="./images/book_covers/normal_people.jpg" alt="cover">
                 </a>
                 <p><strong>Normal People</strong></p>
                 <p>Sally Rooney</p>
                 <p class="price">9,98 £</p>
-                <button type="button">Add to basket</button>
+                <button class="add-to-cart" type="button">Add to basket</button>
             </div>
-            <div class="book-details-container">
+            <div id="110" class="book-details-container">
                 <a href="./product_details.html">
                     <img class="book-cover" src="./images/book_covers/rome.jpg" alt="cover">
                 </a>
                 <p><strong>The Lovers' Guide to Rome</strong></p>
                 <p>Mark Lamprell</p>
                 <p class="price">9,98 £</p>
-                <button type="button">Add to basket</button>
+                <button class="add-to-cart" type="button">Add to basket</button>
             </div>
-            <div class="book-details-container">
+            <div id="111" class="book-details-container">
                 <a href="./product_details.html">
                     <img class="book-cover" src="./images/book_covers/this_is_going_to_hurt.jpg" alt="cover">
                 </a>
                 <p><strong>This Is Going To Hurt</strong></p>
                 <p> Adam Kay</p>
                 <p class="price">9,98 £</p>
-                <button type="button">Add to basket</button>
+                <button class="add-to-cart" type="button">Add to basket</button>
             </div>
         </div>
 
@@ -186,5 +186,7 @@
     document.getElementById('swipe-next').addEventListener('click', () => document.getElementById("third").classList.add('put-on-bottom'));
     document.getElementById('swipe-prev').addEventListener('click', () => document.getElementById("third").classList.remove('put-on-bottom'));
 </script>
+<script src="./js/home.js" type="module"></script>
+<script src="./js/serverRequests.js"></script>
 </body>
 </html>

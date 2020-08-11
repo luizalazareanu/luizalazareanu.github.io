@@ -26,7 +26,9 @@ function renderBooksInCart(cartBooks) {
         div.setAttribute("id", book.id)
         frontCover.setAttribute("src", book.img);
         detailsTitle.innerHTML = book.title;
-        detailsAuthor.innerHTML = book.author.slice(15, -4);
+        detailsTitle.style.fontWeight = "bold";
+        detailsAuthor.innerHTML = book.author;
+        //detailsAuthor.innerHTML = book.author.slice(15, -4);
         detailsPrice.innerHTML = book.price;
 
         cartItems.appendChild(div);
@@ -79,6 +81,6 @@ function getSubtotal(cartBooks) {
     var subtotal = document.getElementById("subtotal");
     subtotal.innerHTML = cartBooks.reduce((accumulator, currentObj) => {
         //console.log( parseFloat(currentObj.price.replace(',','.').replace(' ','')));
-        return accumulator + parseFloat(currentObj.price.replace(',', '.').replace(' ', ''));
+        return Math.round((accumulator + parseFloat(currentObj.price.replace(',', '.').replace(' ', '')))*100)/100;
     }, 0);
 }

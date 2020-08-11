@@ -1,3 +1,9 @@
+
+/*** load no of items that are currently in cart ***/
+document.addEventListener("DOMContentLoaded", function () {
+    fetchBooksForCart().then(getNoOfCartItems);
+});
+
 /************************************* CART REQUESTS ******************/
 ///// GET cart books from server
 function fetchBooksForCart() {
@@ -31,6 +37,7 @@ function postBookInCart(bodyValue) {
 }
 
 /************************************* WISHLIST REQUESTS ******************/
+///GET wishlisted books from server
 function fetchBooksForWishlist() {
     return fetch("http://localhost:3000/booksForWishlist", {
         method: "GET",

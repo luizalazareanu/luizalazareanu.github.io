@@ -1,4 +1,7 @@
-//var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
+document.addEventListener("DOMContentLoaded", function () {
+    fetchBooksForWishlist().then(renderBooks);
+});
+
 var existingDiv = document.getElementById("showItems");
 
 function renderBooks(wishlistedBooks) {
@@ -34,27 +37,13 @@ function renderBooks(wishlistedBooks) {
     })
 }
 
-window.onload = fetchBooks();
 
 existingDiv.addEventListener('click', removeFromWishlist);
-
-
-/////fetch wishlisted books from server
-function fetchBooks(){
-    return fetch("http://localhost:3000/booksForWishlist",{
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-    }).then(response =>response.json());
-}
-
-fetchBooks().then(renderBooks);
 
 ////remove books on server then render them
 function removeFromWishlist(event) {
     var bookId = event.target.parentNode.getAttribute("id");
-    console.log(bookId);
+    //console.log(bookId);
     if (event.target.className.includes("remove-item")) {
         fetch(`http://localhost:3000/booksFromWishlist/${bookId}`,{
             method: "DELETE",
@@ -62,7 +51,24 @@ function removeFromWishlist(event) {
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             }
         })
-            .then(fetchBooks)
+            .then(fetchBooksForWishlist)
             .then(renderBooks)
     }
 }
+
+////add to cart from wishlist
+existingDiv.addEventListener('click', function (event) {
+    var bodyRequest = JSON.stringify({
+        id: event.target.parentNode.getAttribute("id"),
+        img: event.target.parentNode.children[0].getAttribute("src"),
+        title: event.target.parentNode.children[1].innerHTML,
+        author: event.target.parentNode.children[2].innerHTML,
+        price: event.target.parentNode.children[3].innerHTML,
+    });
+    if (event.target.className == "add-to-cart") {
+        //console.log(event.target);
+        postBookInCart(bodyRequest)
+            .then(fetchBooksForCart)
+            .then(getNoOfCartItems)
+    }
+});
