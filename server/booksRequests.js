@@ -10,7 +10,16 @@ const productsRouter = express.Router();
 
 
 productsRouter.get("/books", function (request, response) {
-    response.send(library)
+    //console.log(request);
+
+    if (request.query.search !== "undefined") {
+        var abc = library.filter(book => book.title.concat(book.author).includes(request.query.search));
+        console.log(abc);
+        response.send(abc);
+        //response.send(library.filter(book => book.title.concat(book.author).includes(request.query.search)))
+    } else {
+        response.send(library)
+    }
 });
 
 ///// logic for wishlist

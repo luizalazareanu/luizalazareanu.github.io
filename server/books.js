@@ -24,7 +24,7 @@ var library = [
         "author": "Lonely Planet",
         "price": "8,98",
         "category": "nonfiction",
-        "discount": 10
+        "discount": 20
     },
     {
         "id": 103,
@@ -87,7 +87,7 @@ var library = [
         "author": "Celeste Ng",
         "price": "7,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 110,
@@ -96,7 +96,7 @@ var library = [
         "author": "Mark Lamprell",
         "price": "7,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 111,
@@ -105,7 +105,7 @@ var library = [
         "author": "Adam Kay",
         "price": "7,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 10
     },
     {
         "id": 112,
@@ -114,7 +114,7 @@ var library = [
         "author": "Bernadine Evaristo",
         "price": "6,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 113,
@@ -123,7 +123,7 @@ var library = [
         "author": "Caroline Taggart",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 10
     },
     {
         "id": 114,
@@ -132,7 +132,7 @@ var library = [
         "author": "Jeanine Cummins",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 10
     },
     {
         "id": 115,
@@ -141,7 +141,7 @@ var library = [
         "author": "Jeanine Cummins",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 116,
@@ -150,7 +150,7 @@ var library = [
         "author": "Emily Henry",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 117,
@@ -159,7 +159,7 @@ var library = [
         "author": "Donna Tartt",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 10
     },
     {
         "id": 118,
@@ -168,7 +168,7 @@ var library = [
         "author": "Naoise Dolan",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
     {
         "id": 119,
@@ -177,7 +177,7 @@ var library = [
         "author": "Alice Vincent",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 10
     },
     {
         "id": 120,
@@ -186,7 +186,7 @@ var library = [
         "author": "Brandon Taylor",
         "price": "5,98",
         "category": "fiction",
-        "discount": 15
+        "discount": 20
     },
 
 //     (function alabala (){

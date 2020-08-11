@@ -1,12 +1,12 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-    fetchBooks();
+    fetchBooks().then(renderBooks);
 });
 
 var booksContainer = document.getElementById("books");
 
 function renderBooks(library) {
     //var booksContainer = document.getElementById("books");
+    booksContainer.innerHTML = "";
     library.forEach(function (book) {
         //create elements
         var divBookDetails = document.createElement("div");
@@ -76,8 +76,8 @@ booksContainer.addEventListener('click', getBookCover);
 
 
 /////fetch books from server
-function fetchBooks() {
-    return fetch("http://localhost:3000/books", {
+function fetchBooks(searchString) {
+    return fetch(`http://localhost:3000/books?search=${searchString}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -85,31 +85,7 @@ function fetchBooks() {
     }).then(response => response.json());
 }
 
-fetchBooks().then(renderBooks);
-
-/// add to cart functionality
-// booksContainer.addEventListener('click', function(event){
-//     if(event.target.className == "add-to-basket"){
-//         console.log(event.target);
-//         fetch ("http://localhost:3000/booksForCart",{
-//             method: "POST",
-//             headers:{
-//                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//                 id: event.target.parentNode.getAttribute("id"),
-//                 img: event.target.parentNode.children[0].children[0].getAttribute("src"),
-//                 title: event.target.parentNode.children[1].innerHTML,
-//                 author: event.target.parentNode.children[2].innerHTML,
-//                 price: event.target.parentNode.children[3].innerHTML,
-//             })
-//         })
-//             .then(fetchBooksForCart)
-//             .then(getNoOfCartItems)
-//     }
-// });
-
+/// ADD TO CART
 booksContainer.addEventListener('click', function (event) {
     var bodyRequest = JSON.stringify({
         id: event.target.parentNode.getAttribute("id"),
@@ -125,4 +101,37 @@ booksContainer.addEventListener('click', function (event) {
             .then(getNoOfCartItems)
     }
 });
+/****************************** SEARCH *******************/
+setTimeout(function () {
 
+    var findBooksBtn = document.getElementById("search-btn");
+    findBooksBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        var searchBar = document.getElementById("search-bar");
+        fetchBooks(searchBar.value).then(renderBooks);
+    });
+}, 500);
+
+function searchBook(library, value) {
+    return library.filter(book => book.title.concat(book.author).contains(value))
+}
+
+//console.log(searchBook());
+
+/****************************** FILTERS *******************/
+var newLibrary;
+var filters = [];
+
+function filterBooks(library, property) {
+    newLibrary = library.filter(book => book.property == property.value);
+}
+
+document.addEventListener("click", function (event) {
+    console.log(event.target);
+    if (event.target.getAttribute("type") == "checkbox") {
+        if (event.target.getAttribute("checked")) {
+            //event.target.setAttribute("checked")
+            console.log("wtv");
+        }
+    }
+});
