@@ -13,9 +13,9 @@ productsRouter.get("/books", function (request, response) {
     //console.log(request);
 
     if (request.query.search !== "undefined") {
-        var abc = library.filter(book => book.title.concat(book.author).includes(request.query.search));
-        console.log(abc);
-        response.send(abc);
+        var filteredLibrary = library.filter(book => book.title.concat(book.author).includes(request.query.search));
+        //console.log(filteredLibrary);
+        response.send(filteredLibrary);
         //response.send(library.filter(book => book.title.concat(book.author).includes(request.query.search)))
     } else {
         response.send(library)

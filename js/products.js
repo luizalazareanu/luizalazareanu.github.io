@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchBooks().then(renderBooks);
+    getFilters();
 });
 
 var booksContainer = document.getElementById("books");
@@ -103,7 +104,6 @@ booksContainer.addEventListener('click', function (event) {
 });
 /****************************** SEARCH *******************/
 setTimeout(function () {
-
     var findBooksBtn = document.getElementById("search-btn");
     findBooksBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -112,26 +112,63 @@ setTimeout(function () {
     });
 }, 500);
 
-function searchBook(library, value) {
-    return library.filter(book => book.title.concat(book.author).contains(value))
-}
+// function searchBook(library, value) {
+//     return library.filter(book => book.title.concat(book.author).contains(value))
+// }
 
-//console.log(searchBook());
 
 /****************************** FILTERS *******************/
-var newLibrary;
-var filters = [];
+var filteredLibrary;
+var activeFilters = [
+    // {discount: 10},
+    // {category: "religion"},
+    // {discount: 20}
+];
 
-function filterBooks(library, property) {
-    newLibrary = library.filter(book => book.property == property.value);
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//console.log( checkboxes);
+var cheboxesArray = Object.values(checkboxes);
+//console.log(cheboxesArray);
+
+function getFilters() {
+    activeFilters = [];
+    cheboxesArray.forEach(checkbox => {
+        //console.log(checkbox.checked);
+        if (checkbox.checked) {
+            //console.log(checkbox.getAttribute("id"));
+            //console.log(checkbox.getAttribute("value"));
+            var prop = checkbox.parentNode.parentNode.className;
+            var value = checkbox.getAttribute("id");
+            var newObject = {prop, value};
+            activeFilters.push(newObject);
+            //console.log(activeFilters);
+        }
+    })
 }
+//getFilters();
 
 document.addEventListener("click", function (event) {
-    console.log(event.target);
+    //console.log(event.target);
     if (event.target.getAttribute("type") == "checkbox") {
-        if (event.target.getAttribute("checked")) {
-            //event.target.setAttribute("checked")
-            console.log("wtv");
-        }
+        getFilters();
+        fetchBooks().then(filterBooks).then(renderBooks);
     }
 });
+
+var library=[];
+fetchBooks().then(getArrayOfBooks);
+function getArrayOfBooks(response){
+    //console.log(response);
+    library = response;
+    //console.log(asd);
+return library;
+}
+
+function filterBooks() {
+    //console.log(library);
+    const result = activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+    //console.log(result);
+    activeFilters.forEach(activeFilter => console.log(activeFilter.prop));
+    library.forEach(item => console.log(item.category));
+    return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+}
