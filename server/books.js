@@ -6,7 +6,8 @@ var library = [
         "author": "Maggie O'Farrell",
         "price": "7.89",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : "0-2 Years"
     },
     {
         "id": 101,
@@ -15,7 +16,8 @@ var library = [
         "author": "Colson Whitehead",
         "price": "9,98",
         "category": "nonfiction",
-        "discount": 10
+        "discount": 10,
+        "age" : "3-4 Years"
     },
     {
         "id": 102,
@@ -24,7 +26,8 @@ var library = [
         "author": "Lonely Planet",
         "price": "8,98",
         "category": "nonfiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 103,
@@ -33,7 +36,8 @@ var library = [
         "author": "Colson Whitehead",
         "price": "6,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : "5-8 Years"
     },
     {
         "id": 104,
@@ -42,7 +46,8 @@ var library = [
         "author": "Maggie O'Farrell",
         "price": "6,98",
         "category": "nonfiction",
-        "discount": 10
+        "discount": 30,
+        "age" : "9-11 Years"
     },
     {
         "id": 105,
@@ -51,7 +56,8 @@ var library = [
         "author": "Neil Degrasse Tyson",
         "price": "6,98",
         "category": "nonfiction",
-        "discount": 20
+        "discount": 20,
+        "age" : "12-14 Years"
     },
     {
         "id": 106,
@@ -60,7 +66,8 @@ var library = [
         "author": "NKiese Laymon",
         "price": "7,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 107,
@@ -69,7 +76,8 @@ var library = [
         "author": "Sally Rooney",
         "price": "7,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 108,
@@ -78,7 +86,8 @@ var library = [
         "author": "Maggie O'Farrell",
         "price": "7,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 109,
@@ -87,7 +96,8 @@ var library = [
         "author": "Celeste Ng",
         "price": "7,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 110,
@@ -96,7 +106,8 @@ var library = [
         "author": "Mark Lamprell",
         "price": "7,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 111,
@@ -105,7 +116,8 @@ var library = [
         "author": "Adam Kay",
         "price": "7,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 112,
@@ -114,7 +126,8 @@ var library = [
         "author": "Bernadine Evaristo",
         "price": "6,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 113,
@@ -123,7 +136,8 @@ var library = [
         "author": "Caroline Taggart",
         "price": "5,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 114,
@@ -132,7 +146,8 @@ var library = [
         "author": "Jeanine Cummins",
         "price": "5,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 115,
@@ -141,7 +156,8 @@ var library = [
         "author": "Jeanine Cummins",
         "price": "5,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 116,
@@ -150,7 +166,8 @@ var library = [
         "author": "Emily Henry",
         "price": "5,98",
         "category": "fiction",
-        "discount": 20
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 117,
@@ -159,7 +176,8 @@ var library = [
         "author": "Donna Tartt",
         "price": "5,98",
         "category": "fiction",
-        "discount": 10
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 118,
@@ -167,8 +185,9 @@ var library = [
         "title": "Exciting Times",
         "author": "Naoise Dolan",
         "price": "5,98",
-        "category": "fiction",
-        "discount": 20
+        "category": "philosophy",
+        "discount": 20,
+        "age" : ">14 Years"
     },
     {
         "id": 119,
@@ -176,8 +195,9 @@ var library = [
         "title": "How To Grow Stuff",
         "author": "Alice Vincent",
         "price": "5,98",
-        "category": "fiction",
-        "discount": 10
+        "category": "religion",
+        "discount": 10,
+        "age" : ">14 Years"
     },
     {
         "id": 120,
@@ -185,8 +205,9 @@ var library = [
         "title": "Real Life",
         "author": "Brandon Taylor",
         "price": "5,98",
-        "category": "fiction",
-        "discount": 20
+        "category": "religion",
+        "discount": 30,
+        "age" : ">14 Years"
     },
 
 //     (function alabala (){

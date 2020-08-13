@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetchBooks().then(renderBooks);
+    //fetchBooks().then(renderBooks);
     getFilters();
+    fetchBooks().then(filterBooks).then(renderBooks);
 });
 
 var booksContainer = document.getElementById("books");
@@ -75,7 +76,6 @@ function getBookCover(event) {
 
 booksContainer.addEventListener('click', getBookCover);
 
-
 /////fetch books from server
 function fetchBooks(searchString) {
     return fetch(`http://localhost:3000/books?search=${searchString}`, {
@@ -110,42 +110,79 @@ setTimeout(function () {
         var searchBar = document.getElementById("search-bar");
         fetchBooks(searchBar.value).then(renderBooks);
     });
-}, 500);
-
-// function searchBook(library, value) {
-//     return library.filter(book => book.title.concat(book.author).contains(value))
-// }
-
+}, 1500);
 
 /****************************** FILTERS *******************/
-var filteredLibrary;
 var activeFilters = [
-    // {discount: 10},
-    // {category: "religion"},
-    // {discount: 20}
+    // {discount: [10, 20, 30]},
+    // {category: ["religion", "fiction"]},
+    // {age: [20, 30]}
 ];
+var activeFiltersCategory = [];
+var activeFiltersDiscount = [];
+var activeFiltersAge = [];
 
 var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 //console.log( checkboxes);
 var cheboxesArray = Object.values(checkboxes);
 //console.log(cheboxesArray);
 
+// function getFilters() {
+//     activeFilters = [];
+//     cheboxesArray.forEach(checkbox => {
+//         //console.log(checkbox.checked);
+//         if (checkbox.checked) {
+//             //console.log(checkbox.getAttribute("id"));
+//             //console.log(checkbox.getAttribute("value"));
+//             var prop = checkbox.parentNode.parentNode.className;
+//             var value = checkbox.getAttribute("id");
+//             //var newObject = {prop, value};
+//             //activeFilters.push(newObject);
+//             activeFilters.discount.push(value)
+//             //console.log(activeFilters);
+//         }
+//     })
+// }
+
 function getFilters() {
     activeFilters = [];
+
     cheboxesArray.forEach(checkbox => {
         //console.log(checkbox.checked);
+        var prop = checkbox.parentNode.parentNode.className;
+        var value = checkbox.getAttribute("id");
         if (checkbox.checked) {
-            //console.log(checkbox.getAttribute("id"));
-            //console.log(checkbox.getAttribute("value"));
-            var prop = checkbox.parentNode.parentNode.className;
-            var value = checkbox.getAttribute("id");
-            var newObject = {prop, value};
-            activeFilters.push(newObject);
-            //console.log(activeFilters);
+            var item = activeFilters.find(item => item.prop === prop);
+            if (!item) {
+                item = {prop: prop, value: [value]};
+                activeFilters.push(item);
+            } else {
+                item.value.push(value);
+            }
         }
-    })
+    });
+    //console.log(activeFilters);
 }
-//getFilters();
+
+// function getFilters() {
+//     activeFiltersCategory = [];
+//     activeFiltersDiscount = [];
+//     activeFiltersAge = [];
+//     cheboxesArray.forEach(checkbox => {
+//         //console.log(checkbox.checked);
+//         var prop = checkbox.parentNode.parentNode.className;
+//         var value = checkbox.getAttribute("id");
+//         if (checkbox.checked && prop == "category") {
+//             //console.log(checkbox.getAttribute("id"));
+//             activeFiltersCategory.push(value);
+//             //console.log(activeFiltersCategory);
+//         } else if (checkbox.checked && prop == "discount"){
+//             activeFiltersDiscount.push(value);
+//             //console.log(activeFiltersDiscount);
+//         }
+//     })
+// }
+
 
 document.addEventListener("click", function (event) {
     //console.log(event.target);
@@ -155,20 +192,57 @@ document.addEventListener("click", function (event) {
     }
 });
 
-var library=[];
+var library = [];
 fetchBooks().then(getArrayOfBooks);
-function getArrayOfBooks(response){
+
+function getArrayOfBooks(response) {
     //console.log(response);
     library = response;
-    //console.log(asd);
-return library;
+    //console.log(library);
+    return library;
 }
 
 function filterBooks() {
     //console.log(library);
-    const result = activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
-    //console.log(result);
-    activeFilters.forEach(activeFilter => console.log(activeFilter.prop));
-    library.forEach(item => console.log(item.category));
-    return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+    // const result = activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+    // //console.log(result);
+    // activeFilters.forEach(activeFilter => console.log(activeFilter.prop));
+    // library.forEach(item => console.log(item.category));
+    // return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+    console.log(activeFilters);
+    const result = library.filter(book => {
+        //return (activeFilters.filter(item => book[item.prop] !== item.value)).length === 0
+
+        return (activeFilters.filter(item => item.value.indexOf(book[item.prop] + "") === -1)).length === 0
+        //         var ok = true;
+        //         activeFilters.forEach(item => {
+        //                 if (book[item.prop] != item.value) {
+        //                     ok = false;
+        //                 }
+        //             }
+        //         );
+        //         return ok;
+        //     }
+        //);
+        // //debugger;
+        // return result;
+
+    });
+    //debugger;
+    return result;
 }
+
+// function filterBooks() {
+//     //console.log(library);
+//     //debugger;
+//     // const result = activeFiltersCategory.forEach(categoryItem => library.filter(book => book.category == categoryItem ));
+//     // console.log(result);
+//     // return result;
+//     var result = library.filter(book => activeFiltersCategory.indexOf(book.category) != -1);
+//     console.log(result);
+//     return result;
+//      //activeFiltersCategory.forEach(categoryItem => console.log(categoryItem));
+//     // console.log(library.filter(book => book.category == "fiction"));
+//     // library.forEach(item => console.log(item.category));
+//     // return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
+// }
