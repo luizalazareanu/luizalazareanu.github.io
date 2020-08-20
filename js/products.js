@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var booksContainer = document.getElementById("books");
 
-function renderBooks(library) {
+function renderBooks(library = []) {
     //var booksContainer = document.getElementById("books");
     booksContainer.innerHTML = "";
     library.forEach(function (book) {
@@ -74,17 +74,25 @@ function getBookCover(event) {
     }
 }
 
-booksContainer.addEventListener('click', getBookCover);
+
+function goToBookDetails(event){
+    if(event.target.tagName.includes("IMG")){
+        var bookId = event.target.parentNode.nextSibling.parentNode.getAttribute("id");
+        window.location.href = `/product_details.html?bookid=${bookId}`;
+    }
+}
+
+booksContainer.addEventListener("click",goToBookDetails);
 
 /////fetch books from server
-function fetchBooks(searchString) {
-    return fetch(`http://localhost:3000/books?search=${searchString}`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-    }).then(response => response.json());
-}
+// function fetchBooks(searchString) {
+//     return fetch(`http://localhost:3000/books?search=${searchString}`, {
+//         method: "GET",
+//         headers: {
+//             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+//         },
+//     }).then(response => response.json());
+// }
 
 /// ADD TO CART
 booksContainer.addEventListener('click', function (event) {
@@ -118,31 +126,11 @@ var activeFilters = [
     // {category: ["religion", "fiction"]},
     // {age: [20, 30]}
 ];
-var activeFiltersCategory = [];
-var activeFiltersDiscount = [];
-var activeFiltersAge = [];
 
 var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 //console.log( checkboxes);
 var cheboxesArray = Object.values(checkboxes);
 //console.log(cheboxesArray);
-
-// function getFilters() {
-//     activeFilters = [];
-//     cheboxesArray.forEach(checkbox => {
-//         //console.log(checkbox.checked);
-//         if (checkbox.checked) {
-//             //console.log(checkbox.getAttribute("id"));
-//             //console.log(checkbox.getAttribute("value"));
-//             var prop = checkbox.parentNode.parentNode.className;
-//             var value = checkbox.getAttribute("id");
-//             //var newObject = {prop, value};
-//             //activeFilters.push(newObject);
-//             activeFilters.discount.push(value)
-//             //console.log(activeFilters);
-//         }
-//     })
-// }
 
 function getFilters() {
     activeFilters = [];
@@ -161,27 +149,8 @@ function getFilters() {
             }
         }
     });
-    //console.log(activeFilters);
+    //console.log('filtrele sunt', activeFilters)
 }
-
-// function getFilters() {
-//     activeFiltersCategory = [];
-//     activeFiltersDiscount = [];
-//     activeFiltersAge = [];
-//     cheboxesArray.forEach(checkbox => {
-//         //console.log(checkbox.checked);
-//         var prop = checkbox.parentNode.parentNode.className;
-//         var value = checkbox.getAttribute("id");
-//         if (checkbox.checked && prop == "category") {
-//             //console.log(checkbox.getAttribute("id"));
-//             activeFiltersCategory.push(value);
-//             //console.log(activeFiltersCategory);
-//         } else if (checkbox.checked && prop == "discount"){
-//             activeFiltersDiscount.push(value);
-//             //console.log(activeFiltersDiscount);
-//         }
-//     })
-// }
 
 
 document.addEventListener("click", function (event) {
@@ -204,45 +173,21 @@ function getArrayOfBooks(response) {
 
 function filterBooks() {
     //console.log(library);
-    // const result = activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
-    // //console.log(result);
-    // activeFilters.forEach(activeFilter => console.log(activeFilter.prop));
-    // library.forEach(item => console.log(item.category));
-    // return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
-    console.log(activeFilters);
-    const result = library.filter(book => {
-        //return (activeFilters.filter(item => book[item.prop] !== item.value)).length === 0
-
-        return (activeFilters.filter(item => item.value.indexOf(book[item.prop] + "") === -1)).length === 0
-        //         var ok = true;
-        //         activeFilters.forEach(item => {
-        //                 if (book[item.prop] != item.value) {
-        //                     ok = false;
-        //                 }
-        //             }
-        //         );
-        //         return ok;
-        //     }
-        //);
-        // //debugger;
-        // return result;
-
+    //console.log(activeFilters);
+    let result = library;
+    activeFilters.forEach(activeFilter => {
+        result = result.filter(book => {
+            if(activeFilter.prop === 'category') {
+                return activeFilter.value.indexOf(book.category) > -1;
+            }
+            if(activeFilter.prop === 'discount') {
+                return activeFilter.value.indexOf(String(book.discount)) > -1;
+            }
+            if(activeFilter.prop === 'age'){
+                return activeFilter.value.indexOf(book.age) > -1;
+            }
+            return true;
+        });
     });
-    //debugger;
     return result;
 }
-
-// function filterBooks() {
-//     //console.log(library);
-//     //debugger;
-//     // const result = activeFiltersCategory.forEach(categoryItem => library.filter(book => book.category == categoryItem ));
-//     // console.log(result);
-//     // return result;
-//     var result = library.filter(book => activeFiltersCategory.indexOf(book.category) != -1);
-//     console.log(result);
-//     return result;
-//      //activeFiltersCategory.forEach(categoryItem => console.log(categoryItem));
-//     // console.log(library.filter(book => book.category == "fiction"));
-//     // library.forEach(item => console.log(item.category));
-//     // return activeFilters.forEach(activeFilter => library.filter(book => activeFilter.prop == book[`${activeFilter.prop}`] ));
-// }

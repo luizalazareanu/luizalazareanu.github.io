@@ -5,12 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchBooksForCart().then(renderBooksInCart);
     fetchBooksForCart().then(getNoOfCartItems);
     fetchBooksForCart().then(getSubtotal);
+    getTotal();
 });
 
 function renderBooksInCart(cartBooks) {
     // var wishlistedBooks = JSON.parse(localStorage.getItem("booksForWishlist"));
     //console.log(cartBooks);
     cartItems.innerHTML = "";
+    if(cartBooks == ""){
+        document.getElementById("left-pane-summary").style.visibility = "hidden";
+    }
+
     cartBooks.forEach(book => {
 
         var div = document.createElement('div');
@@ -44,17 +49,6 @@ function renderBooksInCart(cartBooks) {
 cartItems.addEventListener('click', removeFromCart);
 
 
-/////fetch cart books from server
-// function fetchBooks() {
-//     return fetch("http://localhost:3000/booksForCart", {
-//         method: "GET",
-//         headers: {
-//             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-//         },
-//     }).then(response => response.json());
-// }
-
-
 ////remove books on server then render them
 function removeFromCart(event) {
     var bookId = event.target.parentNode.getAttribute("id");
@@ -72,15 +66,40 @@ function removeFromCart(event) {
             .then(getSubtotal)
             .then(fetchBooksForCart)
             .then(getNoOfCartItems);
+        //getTotal();
     }
 }
 
 /// calculate subtotal
+var subtotal = document.getElementById("subtotal");
+
 function getSubtotal(cartBooks) {
     //console.log(cartBooks);
-    var subtotal = document.getElementById("subtotal");
+    //var subtotal = document.getElementById("subtotal");
     subtotal.innerHTML = cartBooks.reduce((accumulator, currentObj) => {
         //console.log( parseFloat(currentObj.price.replace(',','.').replace(' ','')));
-        return Math.round((accumulator + parseFloat(currentObj.price.replace(',', '.').replace(' ', '')))*100)/100;
+        return Math.round((accumulator + parseFloat(currentObj.price.replace(',', '.').replace(' ', ''))) * 100) / 100;
     }, 0);
 }
+
+///calculate total
+function getTotal() {
+    var shippingOptions = document.querySelectorAll(".shipping-option");
+    var shippingArray = Object.values(shippingOptions);
+    setTimeout(function () {
+        var total = document.getElementById("total");
+        const checkedItem = shippingArray.find(item => item.children[0].checked);
+        if (checkedItem) {
+            const shippingCost = checkedItem.children[0].value;
+            total.textContent = `${parseFloat(subtotal.innerHTML) + parseInt(shippingCost)}£`;
+        } else {
+            total.innerText = `${subtotal.innerHTML}£`;
+        }
+    }, 500);
+}
+
+document.addEventListener("click", function (event) {
+    if (event.target.name = "shipping") {
+        getTotal();
+    }
+});

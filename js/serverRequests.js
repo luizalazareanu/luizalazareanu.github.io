@@ -4,6 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchBooksForCart().then(getNoOfCartItems);
 });
 
+
+/***** FETCH BOOKS LIBRARY ******/
+function fetchBooks(searchString) {
+    return fetch(`http://localhost:3000/books?search=${searchString}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+    }).then(response => response.json());
+}
+
 /************************************* CART REQUESTS ******************/
 ///// GET cart books from server
 function fetchBooksForCart() {

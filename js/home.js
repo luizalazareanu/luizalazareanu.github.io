@@ -16,3 +16,15 @@ export default function addBookForCart2(event){
             .then(getNoOfCartItems)
     }
 }
+
+///story slider
+var cards = document.querySelectorAll(".card");
+//console.log(cards);
+var cardArray = Object.values(cards);
+console.log(cardArray);
+
+document.addEventListener("click",function(event) {
+   if(event.target.id == "swipe-next"){
+       console.log("dsadas");
+   }
+});

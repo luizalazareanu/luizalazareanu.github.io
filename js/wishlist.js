@@ -24,7 +24,7 @@ function renderBooks(wishlistedBooks) {
         div.setAttribute("id",book.id)
         frontCover.setAttribute("src", book.img);
         detailsTitle.innerHTML = book.title;
-        detailsAuthor.innerHTML = book.author.slice(15, -4);
+        detailsAuthor.innerHTML = book.author.slice(17, -4);
         detailsPrice.innerHTML = book.price;
 
         existingDiv.appendChild(div);
