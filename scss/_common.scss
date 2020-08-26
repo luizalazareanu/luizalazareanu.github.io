@@ -3,7 +3,6 @@ $color-dark-yellow: #F3E367;
 $color-light-green: #28847F; //buttons
 $color-dark-green: #3e6767; //nav
 
-
 @mixin button-style($width,$background-color,$border-color){
   width: $width;
   height: 30px;

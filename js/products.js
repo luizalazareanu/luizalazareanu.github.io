@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var booksContainer = document.getElementById("books");
 
-function renderBooks(library = []) {
+export function renderBooks(library = []) {
     //var booksContainer = document.getElementById("books");
     booksContainer.innerHTML = "";
     library.forEach(function (book) {
@@ -84,27 +84,17 @@ function goToBookDetails(event){
 
 booksContainer.addEventListener("click",goToBookDetails);
 
-/////fetch books from server
-// function fetchBooks(searchString) {
-//     return fetch(`http://localhost:3000/books?search=${searchString}`, {
-//         method: "GET",
-//         headers: {
-//             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-//         },
-//     }).then(response => response.json());
-// }
 
 /// ADD TO CART
 booksContainer.addEventListener('click', function (event) {
-    var bodyRequest = JSON.stringify({
-        id: event.target.parentNode.getAttribute("id"),
-        img: event.target.parentNode.children[0].children[0].getAttribute("src"),
-        title: event.target.parentNode.children[1].innerHTML,
-        author: event.target.parentNode.children[2].innerHTML,
-        price: event.target.parentNode.children[3].innerHTML,
-    });
     if (event.target.className == "add-to-basket") {
-        //console.log(event.target);
+        var bodyRequest = JSON.stringify({
+            id: event.target.parentNode.getAttribute("id"),
+            img: event.target.parentNode.children[0].children[0].getAttribute("src"),
+            title: event.target.parentNode.children[1].innerHTML,
+            author: event.target.parentNode.children[2].innerHTML,
+            price: event.target.parentNode.children[3].innerHTML,
+        });
         postBookInCart(bodyRequest)
             .then(fetchBooksForCart)
             .then(getNoOfCartItems)
@@ -116,6 +106,7 @@ setTimeout(function () {
     findBooksBtn.addEventListener("click", function (event) {
         event.preventDefault();
         var searchBar = document.getElementById("search-bar");
+        //window.location("./products.html");
         fetchBooks(searchBar.value).then(renderBooks);
     });
 }, 1500);

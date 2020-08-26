@@ -1,10 +1,11 @@
 import addBookForCart2 from "./home.js";
 
 //show hide paragraph
-function showhide() {
+var button = document.getElementById("show-hide-checkbox");
+button.addEventListener("click",function(){
     var div = document.getElementById("new-paragraph");
     div.classList.toggle('hidden-paragraph');
-}
+});
 
 //fly to cart functionality on click
 function getCartPosition() {
@@ -69,7 +70,7 @@ var discount = document.getElementById("discount-amount");
 // }
 
 function setBookDetails() {
-    console.log(window.location.search.slice(-3));
+    console.log(window.location.search.slice(8,11));
     var bookId = window.location.search.slice(-3);
     fetchBooks(bookId).then(response => {
         bookIdContainer.setAttribute("id", response[0].id);
