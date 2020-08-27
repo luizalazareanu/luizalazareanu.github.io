@@ -35,6 +35,9 @@ function renderBooksInCart(cartBooks) {
         detailsAuthor.innerHTML = book.author;
         //detailsAuthor.innerHTML = book.author.slice(15, -4);
         detailsPrice.innerHTML = book.price;
+        // var priceToInteger = parseFloat(book.price.replace(',', '.'));
+        // console.log(book.discount);
+        // detailsPrice.innerHTML = priceToInteger - priceToInteger*(parseFloat(book.discount))/100;
 
         cartItems.appendChild(div);
         div.appendChild(frontCover);

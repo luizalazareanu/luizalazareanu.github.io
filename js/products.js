@@ -145,7 +145,6 @@ function getFilters() {
 
 
 document.addEventListener("click", function (event) {
-    //console.log(event.target);
     if (event.target.getAttribute("type") == "checkbox") {
         getFilters();
         fetchBooks().then(filterBooks).then(renderBooks);
@@ -156,9 +155,7 @@ var library = [];
 fetchBooks().then(getArrayOfBooks);
 
 function getArrayOfBooks(response) {
-    //console.log(response);
     library = response;
-    //console.log(library);
     return library;
 }
 

@@ -75,7 +75,8 @@ productsRouter.post("/booksForCart", function (request, response) {
         img: body.img,
         title: body.title,
         author: body.author,
-        price: body.price
+        price: body.price,
+        discount: body.discount
     };
     ///check if book is already added to cart. If not, push it into cartBooks array
     if (cartBooks.every(book => book.id != newBook.id)) {

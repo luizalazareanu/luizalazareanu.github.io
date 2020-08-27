@@ -1,5 +1,10 @@
 import addBookForCart2 from "./home.js";
 
+document.addEventListener("DOMContentLoaded", function () {
+    setBookDetails();
+    getTotal();
+});
+
 //show hide paragraph
 var button = document.getElementById("show-hide-checkbox");
 button.addEventListener("click",function(){
@@ -62,12 +67,6 @@ var detailsAuthor = document.getElementById("item-author");
 var detailsPrice = document.getElementById("price");
 var discount = document.getElementById("discount-amount");
 
-// function setFrontCover() {
-//     frontCover.setAttribute("src", localStorage.getItem('bookCover'));
-//     detailsTitle.innerHTML = localStorage.getItem('bookTitle');
-//     detailsAuthor.innerHTML = `<span>By (author)</span> <b>${localStorage.getItem('bookAuthor')}</b>`;
-//     detailsPrice.innerHTML = localStorage.getItem('bookPrice');
-// }
 
 function setBookDetails() {
     console.log(window.location.search.slice(8,11));
@@ -77,23 +76,10 @@ function setBookDetails() {
         frontCover.setAttribute("src", response[0].cover);
         detailsTitle.innerHTML = response[0].title;
         detailsAuthor.innerHTML = response[0].author;
-        detailsPrice.innerHTML = response[0].price;
+        detailsPrice.innerHTML = `${response[0].price} £ `;
         discount.innerHTML = `${response[0].discount}% Discount`;
     })
-    // var bookDetailsArray = JSON.parse(localStorage.getItem("detailedBook"));
-    // //console.log(bookDetailsArray);
-    // frontCover.setAttribute("src", bookDetailsArray[0].cover);
-    // detailsTitle.innerHTML = bookDetailsArray[0].title;
-    // detailsAuthor.innerHTML = bookDetailsArray[0].author;
-    // detailsPrice.innerHTML = bookDetailsArray[0].price;
-    // discount.innerHTML = `${bookDetailsArray[0].discount}% Discount`;
 }
-
-//window.onload = setFrontCover();
-document.addEventListener("DOMContentLoaded", function () {
-    //setFrontCover();
-    setBookDetails();
-});
 
 
 ////WISHLIST functionality
@@ -116,29 +102,8 @@ function addBookForWishlist() {
 var addToCartBtn = document.getElementById("add-to-cart");
 addToCartBtn.addEventListener('click', addBookForCart);
 
-// function addBookForCart(){
-//     fetch ("http://localhost:3000/booksForCart",{
-//         method: "POST",
-//         headers:{
-//             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             id: localStorage.getItem("bookId"),
-//             img: frontCover.getAttribute("src"),
-//             title: detailsTitle.innerHTML,
-//             author: detailsAuthor.innerHTML,
-//             price: detailsPrice.innerHTML,
-//         })
-//     })
-// }
 function addBookForCart() {
     const bodyRequest = JSON.stringify({
-        // id: localStorage.getItem("bookId"),
-        // img: localStorage.getItem("bookCover"),
-        // title: localStorage.getItem("bookTitle"),
-        // author: localStorage.getItem("bookAuthor"),
-        // price: localStorage.getItem("bookPrice"),
         id: bookIdContainer.getAttribute("id"),
         img: frontCover.getAttribute("src"),
         title: detailsTitle.innerHTML,
@@ -153,4 +118,14 @@ function addBookForCart() {
 
 var moreBooksContainer = document.querySelector(".books");
 moreBooksContainer.addEventListener('click', addBookForCart2);
+
+////calculate total
+var total = document.getElementById("book-details-total");
+setTimeout(function getTotal(){
+    console.log(parseFloat(detailsPrice.innerHTML.replace(',', '.')));
+    console.log(parseFloat(detailsPrice.innerHTML.replace(',', '.'))*(parseFloat((discount.innerHTML.replace(',', '.')))/100));
+    total.innerHTML = parseFloat(detailsPrice.innerHTML.replace(',', '.')) - parseFloat(detailsPrice.innerHTML.replace(',', '.'))*(parseFloat((discount.innerHTML.replace(',', '.')))/100);
+    total.innerHTML = `${parseFloat(total.innerHTML.replace(',','.')).toFixed(2)} £` ;
+    total.style.color = "#ff0072";
+},800);
 
