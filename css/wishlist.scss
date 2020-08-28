@@ -34,7 +34,15 @@
   //background-color:deeppink;
   @include button-style(130px, $color-light-green, $color-dark-green);
   margin: 10px;
+}
 
+.add-to-cart:hover {
+  background-color: #2E9993
+}
+
+.add-to-cart:active {
+  background-color: #2E9993;
+  transform: translateY(4px);
 }
 
 

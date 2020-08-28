@@ -103,6 +103,15 @@
   margin: 10px;
 }
 
+.book-details-container button:hover {
+  background-color: #2E9993;
+}
+
+.book-details-container button:active {
+  background-color: #2E9993;
+  transform: translateY(4px);
+}
+
 .price {
   color: #ff0072;
 }

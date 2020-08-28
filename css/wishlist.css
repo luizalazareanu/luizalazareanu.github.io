@@ -34,6 +34,15 @@
   margin: 10px;
 }
 
+.add-to-cart:hover {
+  background-color: #2E9993;
+}
+
+.add-to-cart:active {
+  background-color: #2E9993;
+  transform: translateY(4px);
+}
+
 .remove-item {
   background: url("./../images/x-button.png") no-repeat;
   width: 20px;

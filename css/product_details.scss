@@ -117,39 +117,13 @@
   //transition: width, font-size 0.6s ease-in-out;
 }
 
-.buy-product-container .animate-add-to-cart {
-  //width: 30px;
-  //font-size:0;
-  position:absolute;
-  animation-name: fly-to-cart;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in-out;
-  animation-duration: 0.9s;
-  //animation-delay: 0.6s;
+.buy-product-container button:hover {
+  background-color: #FFF073;
 }
 
-@keyframes fly-to-cart {
-  0% {
-    width: 100px;
-    font-size: 5px;
-  }
-  45% {
-    width: 30px;
-    font-size: 0;
-    //transform: translate(0px);
-  }
-  55% {
-    //width: 30px;
-    //font-size:0;
-  }
-  100% {
-    //position:absolute;
-    width: 30px;
-    font-size: 0;
-    //transform: translate(260px,-300px);
-    //transform: translate(1838px, 93.5px);
-    transform: translate(1838px, 93.5px);
-  }
+.buy-product-container button:active {
+  background-color: #FFF073;
+  transform: translateY(4px);
 }
 
 #add-to-wishlist {

@@ -111,6 +111,16 @@
     @include button-style(130px,$color-light-green,$color-dark-green);
     margin-bottom: 5px;
 }
+
+.book-details-container button:hover {
+    background-color: #2E9993
+}
+
+.book-details-container button:active {
+    background-color: #2E9993;
+    //box-shadow: 0 5px #cbcbcb;
+    transform: translateY(4px);
+}
 /*...............................................................................*/
 
 /*...............................................................................Payment Delivery Gift container*/
