@@ -214,6 +214,19 @@
   z-index: 100;
 }
 
+#swipe-next {
+  position: absolute;
+  top: 10%;
+  left: 45%;
+  width: 130px;
+  height: 30px;
+  border: 1px solid #F3E367;
+  border-radius: 15px;
+  background-color: #f6e770;
+  color: #2c2e31;
+  cursor: pointer;
+}
+
 /*when hitting next*/
 /*...............................................................................*/
 /*..............................................................Sign up container*/
